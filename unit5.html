@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Unit 5 — System Software</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <div class="sidebar-logo">📘 CS 9618</div>
+    <div class="sidebar-sub">Paper 1 · Theory Fundamentals</div>
+  </div>
+  <nav class="unit-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="unit1.html">Unit 1 · Information Representation</a>
+    <a href="unit2.html">Unit 2 · Communication</a>
+    <a href="unit3.html">Unit 3 · Hardware</a>
+    <a href="unit4.html">Unit 4 · Processor Fundamentals</a>
+    <a href="unit5.html" class="active">Unit 5 · System Software</a>
+    <a class="soon">Unit 6 · Security &amp; Integrity 🔒</a>
+    <a class="soon">Unit 7 · Ethics &amp; Ownership 🔒</a>
+    <a class="soon">Unit 8 · Databases 🔒</a>
+  </nav>
+  <div class="sidebar-foot">Syllabus 2026 · AS Level</div>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<div class="content">
+  <div class="topbar">
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
+    <h1>Unit 5 — System Software</h1>
+    <span class="badge">Paper 1</span>
+  </div>
+
+  <div class="toc">
+    <h2>📑 Topics in this unit</h2>
+    <div class="toc-grid">
+      <a href="#s1"><span class="num">1</span> OS functions</a>
+      <a href="#s2"><span class="num">2</span> User interfaces</a>
+      <a href="#s3"><span class="num">3</span> Memory management</a>
+      <a href="#s4"><span class="num">4</span> Utility software</a>
+      <a href="#s5"><span class="num">5</span> Program libraries</a>
+      <a href="#s6"><span class="num">6</span> Language translators</a>
+      <a href="#s7"><span class="num">7</span> IDE features</a>
+      <a href="#s8"><span class="num">8</span> Virtual machines</a>
+      <a href="#glossary"><span class="num">★</span> Glossary</a>
+      <a href="#pp"><span class="num">📝</span> Past papers</a>
+    </div>
+  </div>
+
+  <main>
+
+    <div class="section open" id="s1">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>1. Operating System Functions <span class="sub">5 key management tasks</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>An <span class="kw" data-def="Software that provides an environment for applications to run and interfaces between hardware and users.">operating system (OS)</span> is system software that manages computer hardware and provides services for applications.</p>
+        <table class="styled-table">
+          <tr><th>Function</th><th>Purpose</th><th>Examples</th></tr>
+          <tr><td><span class="kw" data-def="Controls how main memory is allocated to programs and data.">Memory Management</span></td><td>Allocates/deallocates memory; moves data between RAM and virtual memory</td><td>Paging, segmentation, virtual memory</td></tr>
+          <tr><td><span class="kw" data-def="Manages files on storage devices.">File Management</span></td><td>Creates, deletes, moves, renames files; controls file access</td><td>FAT, NTFS, ext4 file systems</td></tr>
+          <tr><td><span class="kw" data-def="Protects data and resources from unauthorised access.">Security Management</span></td><td>User authentication, access rights, data encryption</td><td>Passwords, firewalls, permissions</td></tr>
+          <tr><td><span class="kw" data-def="Controls all hardware devices connected to the computer.">Hardware Management</span></td><td>Communicates with devices via device drivers</td><td>Printer drivers, USB controllers</td></tr>
+          <tr><td><span class="kw" data-def="Manages the execution of programs (processes).">Process Management</span></td><td>Loads/unloads programs; handles multitasking</td><td>Scheduling algorithms, task switching</td></tr>
+        </table>
+        <div class="info"><strong>📌 Exam tip:</strong> You must be able to name all 5 functions and give examples. Memory management often appears in questions about virtual memory or paging.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s2">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>2. User Interfaces <span class="sub">GUI vs CLI vs Natural Language</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>A <span class="kw" data-def="Means of communication between user and computer.">human-computer interface (HCI)</span> lets users interact with a computer:</p>
+        <table class="styled-table">
+          <tr><th>Interface</th><th>Description</th><th>Pros & Cons</th></tr>
+          <tr><td><span class="kw" data-def="Uses windows, icons, menus, pointing devices.">GUI (Graphical UI)</span></td><td>Visual: icons, windows, menus; WIMP (Windows, Icons, Menus, Pointing)</td><td>✅ Intuitive, easy to learn<br>❌ Uses more memory/CPU</td></tr>
+          <tr><td><span class="kw" data-def="Text-based interface using typed commands.">CLI (Command Line Interface)</span></td><td>Text-based: user types commands</td><td>✅ Powerful, fast for experts<br>❌ Hard to learn; no visual cues</td></tr>
+          <tr><td><span class="kw" data-def="GUIs enhanced with touch gestures (pinch, rotate).">Post-WIMP</span></td><td>Touch-screen: gestures like pinch-to-zoom, rotate</td><td>✅ Natural, no training needed<br>❌ Limited to touch devices</td></tr>
+          <tr><td><span class="kw" data-def="User speaks to computer using natural language.">Natural Language</span></td><td>Voice commands (Siri, Alexa)</td><td>✅ Hands-free; natural<br>❌ Recognition may fail</td></tr>
+        </table>
+        <div class="tip"><strong>📌 Exam tip:</strong> Know the differences between GUI and CLI — GUI is easy for beginners but slower for experts; CLI is faster for experts but difficult to learn.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s3">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>3. Memory Management <span class="sub">Paging · Segmentation · Virtual Memory</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="How the OS controls allocation and deallocation of memory to programs.">Memory management</span> includes:</p>
+        
+        <div style="margin: 1rem 0;">
+          <strong style="color: var(--accent); display: block; margin-bottom: 0.5rem;">📊 Paging</strong>
+          <p>Divides memory into fixed-size pages (e.g., 4KB). Programs are split across pages; OS maps pages to frames in RAM.</p>
+        </div>
+        
+        <div style="margin: 1rem 0;">
+          <strong style="color: var(--green); display: block; margin-bottom: 0.5rem;">📊 Segmentation</strong>
+          <p>Divides memory into logical segments (code, data, stack). Each segment has variable length; easier for programmers.</p>
+        </div>
+        
+        <div style="margin: 1rem 0;">
+          <strong style="color: var(--amber); display: block; margin-bottom: 0.5rem;">💾 Virtual Memory</strong>
+          <p>Uses hard disk as extra "RAM". When RAM is full, inactive pages are swapped to disk (page file/swap file).</p>
+          <div class="worked"><strong>Swap process:</strong> Less-used pages → disk; needed again → back to RAM. Slower than RAM access but allows more programs.</div>
+        </div>
+        
+        <table class="styled-table">
+          <tr><th>Term</th><th>Meaning</th></tr>
+          <tr><td>Page</td><td>Fixed-size block of memory</td></tr>
+          <tr><td>Frame</td><td>Physical location in RAM that holds a page</td></tr>
+          <tr><td>Page Table</td><td>Maps virtual addresses to physical addresses</td></tr>
+          <tr><td>Thrashing</td><td>When system spends more time swapping than executing</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="section" id="s4">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>4. Utility Software <span class="sub">Disk utilities · Security · Maintenance</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Software that helps manage, maintain, and protect computer.">Utility software</span> performs specific maintenance tasks:</p>
+        <table class="styled-table">
+          <tr><th>Utility</th><th>Purpose</th><th>Examples</th></tr>
+          <tr><td>Disk Formatter</td><td>Prepares storage medium for use (creates file system)</td><td>NTFS, FAT32, ext4 formatting</td></tr>
+          <tr><td>Virus Checker</td><td>Scans for and removes malware</td><td>Windows Defender, Norton</td></tr>
+          <tr><td>Defragmentation</td><td>Reorganises files on disk for faster access</td><td>Windows Disk Defragmenter</td></tr>
+          <tr><td>Backup Software</td><td>Creates copies of data for recovery</td><td>Time Machine (macOS)</td></tr>
+          <tr><td>Disk Content Analysis</td><td>Shows disk usage by file/folder</td><td>WinDirStat, TreeSize</td></tr>
+          <tr><td>File Compression</td><td>Reduces file size to save space</td><td>WinZip, 7-Zip</td></tr>
+          <tr><td>Disk Repair</td><td>Fixes disk errors, bad sectors</td><td>chkdsk (Windows)</td></tr>
+        </table>
+        <div class="pp-block">
+          <span class="pp-link">Frequent Paper 1 Q</span>
+          <q>Explain why a computer needs utility software and name three utilities.</q>
+          <details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content">To maintain/optimise/secure the computer. Examples: virus checker, disk defragmenter, backup software.</div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s5">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>5. Program Libraries <span class="sub">DLLs · Reusable Code</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>A <span class="kw" data-def="Collection of pre-written code that can be used by many programs.">program library</span> contains ready-made code for common tasks (e.g., maths functions, graphics).</p>
+        <p><span class="kw" data-def="Dynamic Link Library — external library that is loaded at runtime.">Dynamic Link Library (DLL)</span> files are shared libraries in Windows. Programs link to them at runtime.</p>
+        <table class="styled-table">
+          <tr><th>Type</th><th>When linked</th><th>Examples</th><th>Pros & Cons</th></tr>
+          <tr><td><span class="kw" data-def="Code included during compilation.">Static Library</span></td><td>At compile time</td><td>.lib files (Windows)</td><td>✅ Faster execution; ❌ Larger executable</td></tr>
+          <tr><td><span class="kw" data-def="Code loaded at runtime (e.g., DLL).">Dynamic Library</span></td><td>At runtime</td><td>.dll files (Windows), .so files (Linux)</td><td>✅ Smaller executables, shared; ❌ DLL missing = program fails</td></tr>
+        </table>
+        <div class="info"><strong>Benefits of libraries:</strong> Code reuse (don't reinvent wheel), easier maintenance (update library once), smaller program size (shared libraries).</div>
+      </div>
+    </div>
+
+    <div class="section" id="s6">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>6. Language Translators <span class="sub">Assemblers · Compilers · Interpreters</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Software that converts code from one language to another.">Language translators</span> convert source code to machine code:</p>
+        <table class="styled-table">
+          <tr><th>Translator</th><th>Input</th><th>Output</th><th>Key features</th></tr>
+          <tr><td><span class="kw" data-def="Converts assembly language to machine code.">Assembler</span></td><td>Assembly language</td><td>Machine code</td><td>One-to-one mapping; machine dependent</td></tr>
+          <tr><td><span class="kw" data-def="Translates entire high-level program to machine code.">Compiler</span></td><td>High-level language</td><td>Object code (exe)</td><td>Translates all at once; faster execution</td></tr>
+          <tr><td><span class="kw" data-def="Translates and executes line-by-line.">Interpreter</span></td><td>High-level language</td><td>Executes directly</td><td>Translates line by line; slower but easier to debug</td></tr>
+        </table>
+        <div style="margin: 1rem 0;">
+          <strong style="color: var(--accent); display: block; margin-bottom: 0.5rem;">Compiler vs Interpreter</strong>
+          <table class="styled-table">
+            <tr><th>Aspect</th><th>Compiler</th><th>Interpreter</th></tr>
+            <tr><td>Translation time</td><td>Before execution (compile once)</td><td>During execution (every run)</td></tr>
+            <tr><td>Execution speed</td><td>Fast (machine code ready)</td><td>Slower (translates each time)</td></tr>
+            <tr><td>Error detection</td><td>All at compile time</td><td>Stops at first error</td></tr>
+            <tr><td>Portability</td><td>Machine specific</td><td>Cross-platform if interpreter exists</td></tr>
+            <tr><td>Example languages</td><td>C, C++, Pascal</td><td>Python, JavaScript, BASIC</td></tr>
+          </table>
+        </div>
+        <div class="tip"><strong>📌 Exam tip:</strong> Java uses both! Java code → bytecode (compiler), bytecode → executed by JVM (interpreter).</div>
+      </div>
+    </div>
+
+    <div class="section" id="s7">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>7. Integrated Development Environments <span class="sub">IDE features: coding, debugging, testing</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>An <span class="kw" data-def="Software suite that helps programmers write, debug, and test code.">Integrated Development Environment (IDE)</span> combines tools for programming:</p>
+        <table class="styled-table">
+          <tr><th>Feature</th><th>Purpose</th><th>Examples</th></tr>
+          <tr><td><span class="kw" data-def="Auto-complete, syntax highlighting.">Code Editor</span></td><td>Write/edit code</td><td>Syntax highlighting, auto-complete</td></tr>
+          <tr><td><span class="kw" data-def="Translator built into IDE.">Compiler/Interpreter</span></td><td>Translate/run code</td><td>Built-in or external</td></tr>
+          <tr><td><span class="kw" data-def="Finds and helps fix errors.">Debugger</span></td><td>Step through code, track variables</td><td>Breakpoints, step into/over, watch window</td></tr>
+          <tr><td><span class="kw" data-def="Checks syntax as you type.">Syntax Check</span></td><td>Catch errors early</td><td>Real-time error highlighting</td></tr>
+          <tr><td><span class="kw" data-def="Makes code look neat and consistent.">Pretty Print</span></td><td>Reformat code</td><td>Indentation, spacing</td></tr>
+          <tr><td><span class="kw" data-def="Help for context (parameters, methods).">Context-Sensitive Help</span></td><td>Show function hints while typing</td><td>Parameter suggestions</td></tr>
+          <tr><td><span class="kw" data-def="Collapses/expands code blocks.">Expand/Collapse</span></td><td>Manage large files</td><td>Hide/show functions/classes</td></tr>
+        </table>
+        <div class="info"><strong>Common IDEs:</strong> Visual Studio (C#), Eclipse (Java), PyCharm (Python), Xcode (Swift). An IDE improves productivity.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s8">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>8. Virtual Machines <span class="sub">Guest OS · Host OS · Hypervisor</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>A <span class="kw" data-def="Software emulation of a complete computer system.">virtual machine (VM)</span> is an emulated computer running inside another computer.</p>
+        
+        <div class="diagram">
+          <div class="diagram-title">📊 Virtual Machine Architecture</div>
+          <table class="styled-table">
+            <tr><th>Component</th><th>Role</th></tr>
+            <tr><td><span class="kw" data-def="Controls physical hardware.">Host OS</span></td><td>Original OS on physical computer</td></tr>
+            <tr><td><span class="kw" data-def="Runs inside VM, unaware it's virtual.">Guest OS</span></td><td>OS running inside the VM</td></tr>
+            <tr><td><span class="kw" data-def="Manages virtual hardware and maps to physical.">Hypervisor (VMM)</span></td><td>Virtual Machine Monitor; creates/manages VMs</td></tr>
+          </table>
+        </div>
+        
+        <div style="margin-top: 1rem;">
+          <strong style="color: var(--accent); display: block; margin-bottom: 0.5rem;">Benefits of VMs:</strong>
+          <ul>
+            <li><strong>Hardware independence</strong> — run different OS on same hardware</li>
+            <li><strong>Security</strong> — isolate risky programs in a VM</li>
+            <li><strong>Testing</strong> — test software in different OS without rebooting</li>
+            <li><strong>Resource sharing</strong> — one powerful server hosts many VMs</li>
+          </ul>
+        </div>
+        
+        <div style="margin-top: 1rem;">
+          <strong style="color: var(--amber); display: block; margin-bottom: 0.5rem;">Limitations of VMs:</strong>
+          <ul>
+            <li><strong>Performance overhead</strong> — slower than native OS</li>
+            <li><strong>Complexity</strong> — needs expertise to manage</li>
+            <li><strong>Resource competition</strong> — VMs share physical resources</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section open" id="pp" style="border-color:var(--amber);">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3 style="color:var(--amber);">📝 Past paper questions — Unit 5</h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="pp-block"><span class="pp-link">Q1</span><q>Explain why a microwave oven does not need an operating system. [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">It has a fixed, simple set of tasks; no need for complex resource management, multitasking, or user interface.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q2</span><q>Describe the main differences between a GUI and a CLI. [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">GUI visual (icons, windows) vs CLI text-based. GUI easy for beginners, CLI faster for experts. GUI uses mouse/pointing, CLI keyboard commands.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q3</span><q>Explain two functions of an operating system. [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Memory management: allocates/deallocates memory, moves data to virtual memory. File management: creates/deletes files, controls access.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q4</span><q>Describe virtual memory and why it is used. [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Uses disk as extension of RAM. Inactive pages swapped to disk to free RAM. Allows more programs to run than physical RAM allows.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q5</span><q>Give three examples of utility software and their purposes. [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary>
+Virus checker: scans for/removes malware. Backup software: creates data copies for recovery. Disk defragmenter: reorganises files for faster access.
+        </div></details></div>
+        <div class="pp-block"><span class="pp-link">Q6</span><q>Compare compilers and interpreters. [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Compiler translates all at once (before execution), produces standalone executable, faster runtime. Interpreter translates line-by-line (during execution), slower but easier to debug.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q7</span><q>What is an IDE? Give three features. [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Integrated Development Environment. Features: code editor with syntax highlighting, debugger with breakpoints, compiler/interpreter integration, context-sensitive help.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q8</span><q>Explain the role of DLL files. [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Dynamic Link Libraries: contain reusable code that can be shared by multiple programs, loaded at runtime to reduce executable size.</div></details></div>
+      </div>
+    </div>
+
+    <div class="glossary" id="glossary">
+      <h2>★ Keywords glossary — Unit 5</h2>
+      <div class="glossary-grid">
+        <div class="glossary-item"><div class="g-term">Operating System</div><div class="g-def">System software managing hardware, providing services.</div></div>
+        <div class="glossary-item"><div class="g-term">Memory Management</div><div class="g-def">Allocates/deallocates memory; controls RAM/virtual memory.</div></div>
+        <div class="glossary-item"><div class="g-term">File Management</div><div class="g-def">Creates, deletes, moves files; controls file access.</div></div>
+        <div class="glossary-item"><div class="g-term">Security Management</div><div class="g-def">User authentication, access rights, encryption.</div></div>
+        <div class="glossary-item"><div class="g-term">Hardware Management</div><div class="g-def">Controls devices via drivers.</div></div>
+        <div class="glossary-item"><div class="g-term">Process Management</div><div class="g-def">Loads/unloads programs; handles multitasking.</div></div>
+        <div class="glossary-item"><div class="g-term">GUI</div><div class="g-def">Graphical User Interface: visual, icons, windows.</div></div>
+        <div class="glossary-item"><div class="g-term">CLI</div><div class="g-def">Command Line Interface: text-based commands.</div></div>
+        <div class="glossary-item"><div class="g-term">Post-WIMP</div><div class="g-def">Touch-screen gestures (pinch, rotate).</div></div>
+        <div class="glossary-item"><div class="g-term">HCI</div><div class="g-def">Human–Computer Interface.</div></div>
+        <div class="glossary-item"><div class="g-term">Virtual Memory</div><div class="g-def">Uses disk as extra RAM; swaps pages.</div></div>
+        <div class="glossary-item"><div class="g-term">Paging</div><div class="g-def">Memory split into fixed-size pages.</div></div>
+        <div class="glossary-item"><div class="g-term">Segmentation</div><div class="g-def">Memory divided into logical segments.</div></div>
+        <div class="glossary-item"><div class="g-term">Utility Software</div><div class="g-def">Tools for maintenance/optimisation/security.</div></div>
+        <div class="glossary-item"><div class="g-term">Virus Checker</div><div class="g-def">Scans for and removes malware.</div></div>
+        <div class="glossary-item"><div class="g-term">Defragmentation</div><div class="g-def">Reorganises disk files for faster access.</div></div>
+        <div class="glossary-item"><div class="g-term">Program Library</div><div class="g-def">Collection of reusable code.</div></div>
+        <div class="glossary-item"><div class="g-term">DLL</div><div class="g-def">Dynamic Link Library: shared library loaded at runtime.</div></div>
+        <div class="glossary-item"><div class="g-term">Assembler</div><div class="g-def">Translates assembly to machine code.</div></div>
+        <div class="glossary-item"><div class="g-term">Compiler</div><div class="g-def">Translates entire HLL program to machine code.</div></div>
+        <div class="glossary-item"><div class="g-term">Interpreter</div><div class="g-def">Translates and executes HLL line-by-line.</div></div>
+        <div class="glossary-item"><div class="g-term">IDE</div><div class="g-def">Integrated Development Environment.</div></div>
+        <div class="glossary-item"><div class="g-term">Debugger</div><div class="g-def">Tool for stepping through code, finding errors.</div></div>
+        <div class="glossary-item"><div class="g-term">Virtual Machine</div><div class="g-def">Emulated computer inside another.</div></div>
+        <div class="glossary-item"><div class="g-term">Hypervisor</div><div class="g-def">Virtual Machine Monitor; manages VMs.</div></div>
+        <div class="glossary-item"><div class="g-term">Guest OS</div><div class="g-def">OS running inside a VM.</div></div>
+        <div class="glossary-item"><div class="g-term">Host OS</div><div class="g-def">Original OS on physical computer.</div></div>
+      </div>
+    </div>
+
+    <footer>CS 9618 · Unit 5: System Software · Syllabus 2026 · Sources: Cambridge 9618 spec, Hodder textbook, past papers &amp; mark schemes (2021–2026)</footer>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
