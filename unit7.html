@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Unit 7 — Ethics &amp; Ownership</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <div class="sidebar-logo">📘 CS 9618</div>
+    <div class="sidebar-sub">Paper 1 · Theory Fundamentals</div>
+  </div>
+  <nav class="unit-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="unit1.html">Unit 1 · Information Representation</a>
+    <a href="unit2.html">Unit 2 · Communication</a>
+    <a href="unit3.html">Unit 3 · Hardware</a>
+    <a href="unit4.html">Unit 4 · Processor Fundamentals</a>
+    <a href="unit5.html">Unit 5 · System Software</a>
+    <a href="unit6.html">Unit 6 · Security &amp; Integrity</a>
+    <a href="unit7.html" class="active">Unit 7 · Ethics &amp; Ownership</a>
+    <a class="soon">Unit 8 · Databases 🔒</a>
+  </nav>
+  <div class="sidebar-foot">Syllabus 2026 · AS Level</div>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<div class="content">
+  <div class="topbar">
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
+    <h1>Unit 7 — Ethics &amp; Ownership</h1>
+    <span class="badge">Paper 1</span>
+  </div>
+
+  <div class="toc">
+    <h2>📑 Topics in this unit</h2>
+    <div class="toc-grid">
+      <a href="#s1"><span class="num">1</span> Ethical issues</a>
+      <a href="#s2"><span class="num">2</span> Cultural &amp; social issues</a>
+      <a href="#s3"><span class="num">3</span> Environmental issues</a>
+      <a href="#s4"><span class="num">4</span> Legislation</a>
+      <a href="#s5"><span class="num">5</span> Open source vs proprietary</a>
+      <a href="#s6"><span class="num">6</span> Licence types</a>
+      <a href="#glossary"><span class="num">★</span> Glossary</a>
+      <a href="#pp"><span class="num">📝</span> Past papers</a>
+    </div>
+  </div>
+
+  <main>
+
+    <div class="section open" id="s1">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>1. Ethical Issues <span class="sub">Privacy · Accuracy · Reliability · Misuse · Theft · Hacking</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Moral principles that govern the use of computers and data.">Ethics</span> in computing refers to moral principles that guide the use of computers and data. Key ethical issues:</p>
+        <table class="styled-table">
+          <tr><th>Issue</th><th>Description</th><th>Example</th></tr>
+          <tr><td><span class="kw" data-def="Personal data should not be accessed by unauthorised parties.">Privacy</span></td><td>Individuals have the right to control their personal data</td><td>Social media sites selling user data to advertisers</td></tr>
+          <tr><td><span class="kw" data-def="Data should be correct and up to date.">Accuracy</span></td><td>Data must be correct and up to date</td><td>Incorrect medical records leading to wrong treatment</td></tr>
+          <tr><td><span class="kw" data-def="Data should be dependable and consistent.">Reliability</span></td><td>Systems should work dependably and consistently</td><td>Banking system crashing during transactions</td></tr>
+          <tr><td><span class="kw" data-def="Using computers for harmful or illegal purposes.">Misuse of computers</span></td><td>Using computers to harm others or break laws</td><td>Cyberbullying, spreading malware, hacking</td></tr>
+          <tr><td><span class="kw" data-def="Unauthorised copying or use of software or data.">Theft of software/data</span></td><td>Copying or using software/data without permission</td><td>Piracy, copyright infringement</td></tr>
+          <tr><td><span class="kw" data-def="Unauthorised access to computer systems.">Hacking</span></td><td>Gaining unauthorised access to systems</td><td>Breaking into a company's database to steal customer data</td></tr>
+          <tr><td><span class="kw" data-def="Using someone else's work as your own.">Plagiarism</span></td><td>Presenting someone else's work as your own</td><td>Copying code from the internet without attribution</td></tr>
+        </table>
+        <div class="info"><strong>📌 Exam tip:</strong> For each issue, be ready to explain <strong>why it matters</strong> and give a <strong>real-world example</strong>.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s2">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>2. Cultural &amp; Social Issues <span class="sub">Digital divide · Censorship · Globalisation · AI</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="How computers and technology affect society and culture.">Cultural and social issues</span> arise from the impact of technology on people and communities:</p>
+        <table class="styled-table">
+          <tr><th>Issue</th><th>Description</th><th>Example</th></tr>
+          <tr><td><span class="kw" data-def="The gap between those with and without access to technology.">Digital divide</span></td><td>Unequal access to technology based on wealth, location, or education</td><td>Rural areas lacking internet access vs. urban centres</td></tr>
+          <tr><td><span class="kw" data-def="Restricting access to certain information or websites.">Censorship</span></td><td>Governments or organisations blocking access to information</td><td>Some countries blocking social media or news websites</td></tr>
+          <tr><td><span class="kw" data-def="Technology connecting people and economies worldwide.">Globalisation</span></td><td>Technology enables global communication and business</td><td>Companies outsourcing work to other countries via the internet</td></tr>
+          <tr><td><span class="kw" data-def="The impact of AI on jobs, privacy, and decision-making.">AI and society</span></td><td>AI systems making decisions that affect people's lives</td><td>AI used in hiring processes potentially reinforcing biases</td></tr>
+          <tr><td><span class="kw" data-def="The impact of social media on mental health and relationships.">Social media impact</span></td><td>Social media affecting mental health, relationships, and privacy</td><td>Cyberbullying, addiction to social media, spread of misinformation</td></tr>
+        </table>
+        <div class="info"><strong>📌 Exam tip:</strong> Be prepared to discuss both <strong>positive and negative</strong> impacts of these issues.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s3">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>3. Environmental Issues <span class="sub">E-waste · Energy use · Green computing</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="The impact of computing on the environment.">Environmental issues</span> in computing include the impact of hardware and energy use:</p>
+        <table class="styled-table">
+          <tr><th>Issue</th><th>Description</th><th>Example</th></tr>
+          <tr><td><span class="kw" data-def="Discarded electronic devices that can harm the environment.">E-waste</span></td><td>Electronic waste from old computers, phones, and other devices</td><td>Toxic materials (lead, mercury) leaking into landfills</td></tr>
+          <tr><td><span class="kw" data-def="The energy consumed by computers and data centres.">Energy use</span></td><td>Computers and data centres consume large amounts of electricity</td><td>Data centres using as much energy as small cities</td></tr>
+          <tr><td><span class="kw" data-def="Practices to reduce the environmental impact of computing.">Green computing</span></td><td>Designing, manufacturing, and using computers in eco-friendly ways</td><td>Using energy-efficient hardware, recycling old devices</td></tr>
+          <tr><td><span class="kw" data-def="The carbon footprint of computing activities.">Carbon footprint</span></td><td>The amount of CO₂ produced by computing activities</td><td>Streaming videos, cloud storage, and cryptocurrency mining</td></tr>
+        </table>
+        <div class="worked">
+          <strong>How to reduce environmental impact:</strong>
+          <div class="step"><span class="step-num">1</span> Use energy-efficient hardware (look for ENERGY STAR labels)</div>
+          <div class="step"><span class="step-num">2</span> Recycle old electronics properly (e-waste recycling programs)</div>
+          <div class="step"><span class="step-num">3</span> Use cloud services that power data centres with renewable energy</div>
+          <div class="step"><span class="step-num">4</span> Turn off devices when not in use (reduce standby power consumption)</div>
+          <div class="step"><span class="step-num">5</span> Virtualise servers to reduce the number of physical machines needed</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s4">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>4. Legislation <span class="sub">Copyright · Data Protection · Computer Misuse · Freedom of Information</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Laws related to computing and data.">Legislation</span> provides legal frameworks for the use of computers and data:</p>
+        <table class="styled-table">
+          <tr><th>Law</th><th>Purpose</th><th>Example</th></tr>
+          <tr><td><span class="kw" data-def="Protects original works of authorship.">Copyright law</span></td><td>Protects original works (software, music, videos) from unauthorised copying</td><td>Copyright, Designs and Patents Act 1988 (UK)</td></tr>
+          <tr><td><span class="kw" data-def="Protects personal data and privacy.">Data Protection Act</span></td><td>Regulates how personal data is stored, processed, and shared</td><td>UK Data Protection Act 2018 (implements GDPR)</td></tr>
+          <tr><td><span class="kw" data-def="Criminalises unauthorised access to computer systems.">Computer Misuse Act</span></td><td>Makes hacking and unauthorised access to computer systems illegal</td><td>Computer Misuse Act 1990 (UK)</td></tr>
+          <tr><td><span class="kw" data-def="Gives the public right to access information held by public authorities.">Freedom of Information Act</span></td><td>Allows public access to information held by government bodies</td><td>Freedom of Information Act 2000 (UK)</td></tr>
+          <tr><td><span class="kw" data-def="Regulates electronic communications and privacy.">PECR</span></td><td>Privacy and Electronic Communications Regulations (covers cookies, marketing)</td><td>PECR 2003 (UK)</td></tr>
+        </table>
+        <div class="info"><strong>📌 Exam tip:</strong> Know the <strong>purpose</strong> of each law and be able to give <strong>examples</strong> of what they cover.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s5">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>5. Open Source vs Proprietary Software <span class="sub">Definitions · Advantages · Disadvantages</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Software whose source code is freely available to modify and distribute.">Open source software</span> has source code that is freely available for anyone to use, modify, and distribute. <span class="kw" data-def="Software owned by an individual or company, with restricted use.">Proprietary software</span> is owned by an individual or company, and its use is restricted by a licence.</p>
+        <table class="styled-table">
+          <tr><th>Aspect</th><th>Open Source</th><th>Proprietary</th></tr>
+          <tr><td><strong>Source code</strong></td><td>Publicly available</td><td>Kept secret</td></tr>
+          <tr><td><strong>Cost</strong></td><td>Usually free</td><td>Usually paid</td></tr>
+          <tr><td><strong>Modification</strong></td><td>Allowed and encouraged</td><td>Not allowed</td></tr>
+          <tr><td><strong>Support</strong></td><td>Community-based</td><td>Professional support from vendor</td></tr>
+          <tr><td><strong>Examples</strong></td><td>Linux, Apache, Firefox, LibreOffice</td><td>Windows, macOS, Microsoft Office, Adobe Photoshop</td></tr>
+        </table>
+        <div style="margin: 1rem 0;">
+          <strong style="color: var(--accent); display: block; margin-bottom: 0.5rem;">Advantages of Open Source:</strong>
+          <ul>
+            <li>Free to use, modify, and distribute</li>
+            <li>Community collaboration leads to rapid improvements</li>
+            <li>More transparent (security flaws can be spotted by many)</li>
+            <li>Customisable to specific needs</li>
+          </ul>
+        </div>
+        <div style="margin: 1rem 0;">
+          <strong style="color: var(--green); display: block; margin-bottom: 0.5rem;">Disadvantages of Open Source:</strong>
+          <ul>
+            <li>May lack professional support</li>
+            <li>Can be less user-friendly</li>
+            <li>No guarantee of quality or security</li>
+          </ul>
+        </div>
+        <div style="margin: 1rem 0;">
+          <strong style="color: var(--amber); display: block; margin-bottom: 0.5rem;">Advantages of Proprietary:</strong>
+          <ul>
+            <li>Professional support and regular updates</li>
+            <li>Often more user-friendly and polished</li>
+            <li>Usually comes with warranties and guarantees</li>
+          </ul>
+        </div>
+        <div style="margin: 1rem 0;">
+          <strong style="color: var(--red); display: block; margin-bottom: 0.5rem;">Disadvantages of Proprietary:</strong>
+          <ul>
+            <li>Can be expensive</li>
+            <li>Users cannot modify the software</li>
+            <li>Vendor lock-in (difficult to switch to other software)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s6">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>6. Licence Types <span class="sub">Single-user · Multi-user · Site · Concurrent · Shareware · Freeware</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>A <span class="kw" data-def="A legal agreement defining how software can be used.">software licence</span> is a legal agreement that defines how software can be used. Different types of licences allow different usage:</p>
+        <table class="styled-table">
+          <tr><th>Licence Type</th><th>Description</th><th>Example</th></tr>
+          <tr><td><span class="kw" data-def="Allows software to be used by one person on one device.">Single-user licence</span></td><td>Software can be installed and used by one person on one device</td><td>Most retail software (e.g., Microsoft Office Home)</td></tr>
+          <tr><td><span class="kw" data-def="Allows software to be used by multiple named users.">Multi-user licence</span></td><td>Software can be used by a specific number of named users</td><td>Business software for a team</td></tr>
+          <tr><td><span class="kw" data-def="Allows software to be used by anyone at a specific location.">Site licence</span></td><td>Software can be used by anyone at a specific location (e.g., a school or company)</td><td>Educational software for a school</td></tr>
+          <tr><td><span class="kw" data-def="Allows software to be used by a limited number of users at the same time.">Concurrent licence</span></td><td>Software can be used by a limited number of users simultaneously</td><td>Server software with 10 concurrent users</td></tr>
+          <tr><td><span class="kw" data-def="Software that can be tried for free, but requires payment for continued use.">Shareware</span></td><td>Software distributed for free trial, but requires payment after a certain period or for full features</td><td>WinZip, some games</td></tr>
+          <tr><td><span class="kw" data-def="Software that is free to use, but cannot be modified or redistributed.">Freeware</span></td><td>Software that is free to use, but the source code is not available and it cannot be modified or redistributed</td><td>Adobe Acrobat Reader, Skype</td></tr>
+          <tr><td><span class="kw" data-def="Software that is free to use, modify, and distribute.">Public domain</span></td><td>Software that is not copyrighted and can be freely used, modified, and distributed</td><td>Some old software, government-produced software</td></tr>
+        </table>
+        <div class="info"><strong>📌 Exam tip:</strong> Know the differences between <strong>shareware</strong> (trial, then pay) and <strong>freeware</strong> (free forever, but no source code).</div>
+      </div>
+    </div>
+
+    <div class="section open" id="pp" style="border-color:var(--amber);">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3 style="color:var(--amber);">📝 Past paper questions — Unit 7</h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="pp-block"><span class="pp-link">Q1</span><q>Explain the ethical issue of privacy in computing. [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Privacy refers to the right of individuals to control their personal data and prevent unauthorised access or use.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q2</span><q>Describe the digital divide and its impact on society. [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">The digital divide is the gap between those with and without access to technology, leading to unequal opportunities in education, jobs, and services.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q3</span><q>Explain the environmental impact of e-waste. [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">E-waste contains toxic materials (lead, mercury) that can pollute the environment if not disposed of properly; recycling reduces this impact.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q4</span><q>State the purpose of the Computer Misuse Act. [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">To criminalise unauthorised access to computer systems and hacking.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q5</span><q>Compare open source and proprietary software. [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Open source: source code public, free, modifiable. Proprietary: source code secret, paid, cannot modify.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q6</span><q>Explain the difference between shareware and freeware. [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Shareware is free to try but requires payment for continued use; freeware is free to use forever but cannot be modified or redistributed.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q7</span><q>Give two advantages and two disadvantages of open source software. [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Advantages: free, customisable. Disadvantages: may lack support, can be less user-friendly.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q8</span><q>What is a site licence? [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Allows software to be used by anyone at a specific location (e.g., a school or company).</div></details></div>
+      </div>
+    </div>
+
+    <div class="glossary" id="glossary">
+      <h2>★ Keywords glossary — Unit 7</h2>
+      <div class="glossary-grid">
+        <div class="glossary-item"><div class="g-term">Ethics</div><div class="g-def">Moral principles governing computer and data use.</div></div>
+        <div class="glossary-item"><div class="g-term">Privacy</div><div class="g-def">Right to control personal data.</div></div>
+        <div class="glossary-item"><div class="g-term">Accuracy</div><div class="g-def">Data must be correct and up to date.</div></div>
+        <div class="glossary-item"><div class="g-term">Reliability</div><div class="g-def">Systems should work dependably and consistently.</div></div>
+        <div class="glossary-item"><div class="g-term">Misuse of computers</div><div class="g-def">Using computers for harmful or illegal purposes.</div></div>
+        <div class="glossary-item"><div class="g-term">Theft of software/data</div><div class="g-def">Unauthorised copying or use of software or data.</div></div>
+        <div class="glossary-item"><div class="g-term">Plagiarism</div><div class="g-def">Using someone else's work as your own.</div></div>
+        <div class="glossary-item"><div class="g-term">Digital divide</div><div class="g-def">Gap between those with and without access to technology.</div></div>
+        <div class="glossary-item"><div class="g-term">Censorship</div><div class="g-def">Restricting access to certain information or websites.</div></div>
+        <div class="glossary-item"><div class="g-term">Globalisation</div><div class="g-def">Technology connecting people and economies worldwide.</div></div>
+        <div class="glossary-item"><div class="g-term">E-waste</div><div class="g-def">Discarded electronic devices that can harm the environment.</div></div>
+        <div class="glossary-item"><div class="g-term">Energy use</div><div class="g-def">Energy consumed by computers and data centres.</div></div>
+        <div class="glossary-item"><div class="g-term">Green computing</div><div class="g-def">Practices to reduce the environmental impact of computing.</div></div>
+        <div class="glossary-item"><div class="g-term">Carbon footprint</div><div class="g-def">Amount of CO₂ produced by computing activities.</div></div>
+        <div class="glossary-item"><div class="g-term">Copyright law</div><div class="g-def">Protects original works of authorship.</div></div>
+        <div class="glossary-item"><div class="g-term">Data Protection Act</div><div class="g-def">Regulates how personal data is stored, processed, and shared.</div></div>
+        <div class="glossary-item"><div class="g-term">Computer Misuse Act</div><div class="g-def">Criminalises unauthorised access to computer systems.</div></div>
+        <div class="glossary-item"><div class="g-term">Freedom of Information Act</div><div class="g-def">Gives the public right to access information held by public authorities.</div></div>
+        <div class="glossary-item"><div class="g-term">PECR</div><div class="g-def">Privacy and Electronic Communications Regulations.</div></div>
+        <div class="glossary-item"><div class="g-term">Open source software</div><div class="g-def">Software with freely available source code.</div></div>
+        <div class="glossary-item"><div class="g-term">Proprietary software</div><div class="g-def">Software owned by an individual or company, with restricted use.</div></div>
+        <div class="glossary-item"><div class="g-term">Single-user licence</div><div class="g-def">Allows software to be used by one person on one device.</div></div>
+        <div class="glossary-item"><div class="g-term">Multi-user licence</div><div class="g-def">Allows software to be used by multiple named users.</div></div>
+        <div class="glossary-item"><div class="g-term">Site licence</div><div class="g-def">Allows software to be used by anyone at a specific location.</div></div>
+        <div class="glossary-item"><div class="g-term">Concurrent licence</div><div class="g-def">Allows software to be used by a limited number of users at the same time.</div></div>
+        <div class="glossary-item"><div class="g-term">Shareware</div><div class="g-def">Software that can be tried for free, but requires payment for continued use.</div></div>
+        <div class="glossary-item"><div class="g-term">Freeware</div><div class="g-def">Software that is free to use, but cannot be modified or redistributed.</div></div>
+        <div class="glossary-item"><div class="g-term">Public domain</div><div class="g-def">Software that is not copyrighted and can be freely used, modified, and distributed.</div></div>
+      </div>
+    </div>
+
+    <footer>CS 9618 · Unit 7: Ethics &amp; Ownership · Syllabus 2026 · Sources: Cambridge 9618 spec, Hodder textbook, past papers &amp; mark schemes (2021–2026)</footer>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
