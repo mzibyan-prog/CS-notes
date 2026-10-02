@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Unit 6 — Security, Privacy &amp; Data Integrity</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <div class="sidebar-logo">📘 CS 9618</div>
+    <div class="sidebar-sub">Paper 1 · Theory Fundamentals</div>
+  </div>
+  <nav class="unit-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="unit1.html">Unit 1 · Information Representation</a>
+    <a href="unit2.html">Unit 2 · Communication</a>
+    <a href="unit3.html">Unit 3 · Hardware</a>
+    <a href="unit4.html">Unit 4 · Processor Fundamentals</a>
+    <a href="unit5.html">Unit 5 · System Software</a>
+    <a href="unit6.html" class="active">Unit 6 · Security &amp; Integrity</a>
+    <a class="soon">Unit 7 · Ethics &amp; Ownership 🔒</a>
+    <a class="soon">Unit 8 · Databases 🔒</a>
+  </nav>
+  <div class="sidebar-foot">Syllabus 2026 · AS Level</div>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<div class="content">
+  <div class="topbar">
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
+    <h1>Unit 6 — Security, Privacy &amp; Data Integrity</h1>
+    <span class="badge">Paper 1</span>
+  </div>
+
+  <div class="toc">
+    <h2>📑 Topics in this unit</h2>
+    <div class="toc-grid">
+      <a href="#s1"><span class="num">1</span> Security threats</a>
+      <a href="#s2"><span class="num">2</span> Types of malware</a>
+      <a href="#s3"><span class="num">3</span> Data privacy &amp; laws</a>
+      <a href="#s4"><span class="num">4</span> Authentication &amp; access</a>
+      <a href="#s5"><span class="num">5</span> Firewalls &amp; anti-malware</a>
+      <a href="#s6"><span class="num">6</span> Encryption</a>
+      <a href="#s7"><span class="num">7</span> Digital signatures &amp; PKI</a>
+      <a href="#glossary"><span class="num">★</span> Glossary</a>
+      <a href="#pp"><span class="num">📝</span> Past papers</a>
+    </div>
+  </div>
+
+  <main>
+
+    <div class="section open" id="s1">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>1. Security Threats <span class="sub">Hacking · Phishing · Pharming</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Methods taken to prevent unauthorised access to data and to recover data if lost or corrupted.">Data security</span> protects systems from threats. The main threats:</p>
+        <table class="styled-table">
+          <tr><th>Threat</th><th>What it is</th><th>Effect</th><th>How to guard against it</th></tr>
+          <tr><td><span class="kw" data-def="Unauthorised access to a computer system or network.">Hacking</span></td><td>Gaining unauthorised access to a system</td><td>Data theft, system damage, loss of privacy</td><td>Firewalls, strong passwords, regular updates, intrusion detection</td></tr>
+          <tr><td><span class="kw" data-def="Software designed to harm a computer system.">Malware</span></td><td>Malicious software (viruses, worms, trojans)</td><td>Corrupts/deletes data, slows system, steals info</td><td>Antivirus/anti-spyware, not opening suspicious attachments</td></tr>
+          <tr><td><span class="kw" data-def="Fake emails tricking users into revealing personal data.">Phishing</span></td><td>Fake emails/websites pretending to be trusted sources</td><td>Victim reveals bank/credit card details</td><td>User awareness, anti-phishing toolbars, checking sender/URL</td></tr>
+          <tr><td><span class="kw" data-def="Redirecting a legitimate website's traffic to a fake site.">Pharming</span></td><td>Redirecting users from a real website to a fake one</td><td>Details captured without user clicking a link</td><td>Keep software updated, secure DNS, check for https/padlock</td></tr>
+        </table>
+        <div class="info"><strong>📌 Exam tip:</strong> The syllabus asks you to <strong>explain the effect</strong> of a threat AND <strong>how to guard against it</strong> — always answer both parts.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s2">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>2. Types of Malware <span class="sub">Virus · Worm · Trojan · Logic bomb · Bot · Spyware</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <table class="styled-table">
+          <tr><th>Type</th><th>Definition</th><th>Behaviour</th></tr>
+          <tr><td><span class="kw" data-def="Program that attaches to files and replicates; needs user action.">Virus</span></td><td>Malicious code that attaches to a host file</td><td>Replicates when file is opened; needs human action to spread</td></tr>
+          <tr><td><span class="kw" data-def="Self-replicating malware that spreads across networks.">Worm</span></td><td>Self-replicating program</td><td>Spreads without user action, across networks; uses up bandwidth</td></tr>
+          <tr><td><span class="kw" data-def="Malware disguised as legitimate software.">Trojan horse</span></td><td>Malicious program disguised as legitimate software</td><td>Replaces part of legit software to harm system; does not self-replicate</td></tr>
+          <tr><td><span class="kw" data-def="Code that triggers when certain conditions are met.">Logic bomb</span></td><td>Malicious code activated by a condition</td><td>Lies dormant until a trigger (e.g. a date) then deletes files/sends data</td></tr>
+          <tr><td><span class="kw" data-def="Software that can take control of a computer to launch attacks.">Bot</span></td><td>Internet robot (not always harmful)</td><td>Can take control of a system to launch attacks (botnet)</td></tr>
+          <tr><td><span class="kw" data-def="Software that secretly gathers user information.">Spyware</span></td><td>Secretly monitors user activity</td><td>Key logging (records key presses); sends data back to attacker</td></tr>
+        </table>
+        <div class="tip"><strong>📌 Exam tip:</strong> Difference between virus and worm — a <strong>virus</strong> needs user action (opening a file) to spread; a <strong>worm</strong> spreads automatically over a network.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s3">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>3. Data Privacy &amp; Data Protection <span class="sub">8 guiding principles</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="The privacy of personal information that should not be accessed by unauthorised parties.">Data privacy</span> ensures personal data is not accessed by unauthorised parties. <span class="kw" data-def="Laws governing how data should be kept private and secure.">Data protection laws</span> follow the same eight guiding principles in most countries:</p>
+        <table class="styled-table">
+          <tr><th>#</th><th>Principle</th></tr>
+          <tr><td>1</td><td>Data must be fairly and lawfully processed</td></tr>
+          <tr><td>2</td><td>Data can only be processed for the stated purpose</td></tr>
+          <tr><td>3</td><td>Data must be adequate, relevant and not excessive</td></tr>
+          <tr><td>4</td><td>Data must be accurate</td></tr>
+          <tr><td>5</td><td>Data must not be kept longer than necessary</td></tr>
+          <tr><td>6</td><td>Data must be processed in accordance with the data subject's rights</td></tr>
+          <tr><td>7</td><td>Data must be kept secure</td></tr>
+          <tr><td>8</td><td>Data must not be transferred to another country unless that country has adequate protection</td></tr>
+        </table>
+        <div class="info"><strong>Note:</strong> You may be asked to explain consequences of breaking these principles (e.g. fines, loss of trust, identity theft).</div>
+      </div>
+    </div>
+
+    <div class="section" id="s4">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>4. Authentication &amp; Access Rights <span class="sub">User accounts · Passwords · Access levels</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="A way of proving someone or something is who they claim to be.">Authentication</span> proves a user's identity. <span class="kw" data-def="Use of access levels to ensure only authorised users can gain access to certain data.">Access rights</span> limit what each user can do.</p>
+        <div style="margin: 1rem 0;">
+          <strong style="color: var(--accent); display: block; margin-bottom: 0.5rem;">Authentication methods:</strong>
+          <ul>
+            <li><strong>Password / username</strong> — something you <em>know</em></li>
+            <li><strong>Biometrics</strong> (fingerprint, face) — something you <em>are</em></li>
+            <li><strong>Token / smart card</strong> — something you <em>have</em></li>
+            <li><strong>Two-factor / multi-factor (2FA/MFA)</strong> — combination of the above</li>
+          </ul>
+        </div>
+        <div style="margin: 1rem 0;">
+          <strong style="color: var(--green); display: block; margin-bottom: 0.5rem;">Good vs poor passwords (exam example):</strong>
+          <table class="styled-table">
+            <tr><th>Poor password</th><th>Why weak</th></tr>
+            <tr><td><code>280290</code></td><td>Date of birth — easily guessed from public info</td></tr>
+            <tr><td><code>FeLix1234</code></td><td>Pet's name + predictable numbers</td></tr>
+            <tr><td><code>John04</code></td><td>Uses real name + year</td></tr>
+          </table>
+        </div>
+        <div class="worked">
+          <strong>How to improve passwords:</strong>
+          <div class="step"><span class="step-num">1</span> Use 8+ characters mixing upper/lower case, numbers, symbols</div>
+          <div class="step"><span class="step-num">2</span> Avoid dictionary words, names, dates</div>
+          <div class="step"><span class="step-num">3</span> Use a passphrase (e.g. <code>Purple$Train!Moon7</code>)</div>
+          <div class="step"><span class="step-num">4</span> Different password for each account; store in a password manager</div>
+          <div class="step"><span class="step-num">5</span> Never save passwords on shared devices — beware "save password?" prompts</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s5">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>5. Firewalls &amp; Anti-Malware <span class="sub">Firewall · Antivirus · Anti-spyware</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Hardware or software that filters incoming/outgoing network traffic.">A firewall</span> controls traffic between a network and the outside world (often a gateway, or software in the OS).</p>
+        <div class="info"><strong>Firewall limitations — it CANNOT:</strong> prevent insiders using their own modems to bypass it; control employee misconduct/carelessness; stop standalone users disabling it. These need management and user discipline.</div>
+        <table class="styled-table">
+          <tr><th>Software</th><th>What it does</th></tr>
+          <tr><td><span class="kw" data-def="Software that detects and removes viruses.">Antivirus</span></td><td>Checks files before running; compares to known-virus database; heuristic checking; quarantines/deletes infected files (false positives possible)</td></tr>
+          <tr><td><span class="kw" data-def="Software that detects and removes spyware.">Anti-spyware</span></td><td>Detects/removes spyware using rules or known file structures</td></tr>
+        </table>
+        <div class="tip"><strong>📌 Exam tip:</strong> Antivirus must be kept up to date (new viruses appear constantly) and full system scans done regularly — some viruses lie dormant.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s6">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>6. Encryption <span class="sub">Symmetric · Asymmetric · Block/Stream · Chaining</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Plaintext is the original message; ciphertext is the encrypted result.">Plaintext → ciphertext</span> via an encryption algorithm. Encryption cannot stop interception but makes intercepted data unreadable.</p>
+        <table class="styled-table">
+          <tr><th>Term</th><th>Meaning</th></tr>
+          <tr><td><span class="kw" data-def="Original message before encryption.">Plaintext</span></td><td>Readable original data</td></tr>
+          <tr><td><span class="kw" data-def="Encrypted, unreadable data.">Ciphertext</span></td><td>Output of encryption</td></tr>
+          <tr><td><span class="kw" data-def="Same secret key used to encrypt and decrypt.">Symmetric encryption</span></td><td>One shared secret key (fast, but key-distribution problem)</td></tr>
+          <tr><td><span class="kw" data-def="Uses public and private key pair.">Asymmetric encryption</span></td><td>Public key (everyone) + private key (secret); solves key distribution</td></tr>
+          <tr><td><span class="kw" data-def="Encrypts a block of bits at once.">Block cipher</span></td><td>Encrypts fixed-size blocks together</td></tr>
+          <tr><td><span class="kw" data-def="Encrypts bits one at a time as they arrive.">Stream cipher</span></td><td>Encrypts bit-by-bit in sequence</td></tr>
+          <tr><td><span class="kw" data-def="XOR previous ciphertext block with next plaintext before encrypting.">Block chaining</span></td><td>Prevents identical plaintext blocks giving identical ciphertext</td></tr>
+        </table>
+        <div class="worked">
+          <strong>Key distribution problem:</strong> In symmetric encryption, sending the secret key risks interception by an eavesdropper. <strong>Asymmetric encryption</strong> solves this — only the private key is secret; the public key can be shared openly.
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s7">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>7. Digital Signatures, Certificates &amp; PKI <span class="sub">Hashing · SSL · CA</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>A <span class="kw" data-def="Digital code that validates authenticity and integrity of a document.">digital signature</span> verifies a document's sender and that it was not tampered with. Its four purposes: <strong>authentication, non-repudiation, data integrity, confidentiality</strong>.</p>
+        <table class="styled-table">
+          <tr><th>Concept</th><th>Meaning</th></tr>
+          <tr><td><span class="kw" data-def="One-way algorithm producing a fixed digest from a message.">Hashing</span></td><td>Plaintext → digest (fixed value); used to identify sender without encrypting whole message</td></tr>
+          <tr><td><span class="kw" data-def="Electronic document containing a public key and owner identity, issued by a CA.">Digital certificate</span></td><td>Issued by a Certificate Authority (CA); proves website/owner identity + public key</td></tr>
+          <tr><td><span class="kw" data-def="A combination of digital certificates, public key cryptography and CAs.">PKI</span></td><td>Public Key Infrastructure: certificates + public-key crypto + CAs</td></tr>
+          <tr><td><span class="kw" data-def="Protocol providing secure, encrypted communication over a network.">SSL/TLS</span></td><td>Provides confidentiality, authentication and message integrity (look for https + padlock)</td></tr>
+        </table>
+        <div class="info"><strong>How a digital signature works:</strong> Sender hashes the message → encrypts the digest with their <em>private</em> key. Receiver decrypts digest with sender's <em>public</em> key, re-hashes the message, and compares. Match = authentic and unaltered.</div>
+      </div>
+    </div>
+
+    <div class="section open" id="pp" style="border-color:var(--amber);">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3 style="color:var(--amber);">📝 Past paper questions — Unit 6</h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="pp-block"><span class="pp-link">Q1</span><q>Explain the effect of these threats and how to guard against them: (i) hacking (ii) malware (iii) phishing (iv) pharming. [8]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Hacking: unauthorised access → use firewalls/strong passwords. Malware: corrupts data → antivirus, don't open suspicious files. Phishing: fake emails steal details → awareness, anti-phishing toolbar, check URLs. Pharming: redirect to fake site → updated software, secure DNS, check https.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q2</span><q>Define: worm, logic bomb, Trojan horse. [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Worm: self-replicating malware spreading without user action. Logic bomb: code triggered by a condition (e.g. date) to cause harm. Trojan: malware disguised as legitimate software.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q3</span><q>Why are the passwords 280290, FeLix1234, John04 poor? How could they be improved? [5]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Weak because they use DOB, pet name + numbers, real name + year — all guessable. Improve: 8+ chars, mix case/numbers/symbols, no dictionary words/names/dates, unique per account, use password manager.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q4</span><q>Explain why John should say 'no' to saving his password on a device. [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Saved passwords can be accessed by anyone using the device or by malware, compromising account security.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q5</span><q>Explain the difference between symmetric and asymmetric encryption. [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Symmetric: same key to encrypt/decrypt — fast but key distribution risk. Asymmetric: public key (shared) + private key (secret) — solves distribution problem but slower.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q6</span><q>State the biggest disadvantage of symmetric encryption. [1]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Security problem when transmitting the secret key (key distribution problem).</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q7</span><q>Explain what a digital signature is and its four purposes. [5]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">A digital code validating authenticity/integrity. Purposes: authentication, non-repudiation, data integrity, confidentiality.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q8</span><q>Explain what is meant by pharming and how it differs from phishing. [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Pharming silently redirects a real website to a fake one (no user click needed). Phishing requires the user to click a link/open an email first.</div></details></div>
+      </div>
+    </div>
+
+    <div class="glossary" id="glossary">
+      <h2>★ Keywords glossary — Unit 6</h2>
+      <div class="glossary-grid">
+        <div class="glossary-item"><div class="g-term">Data security</div><div class="g-def">Methods to prevent unauthorised access and recover lost/corrupted data.</div></div>
+        <div class="glossary-item"><div class="g-term">Hacking</div><div class="g-def">Unauthorised access to a system or network.</div></div>
+        <div class="glossary-item"><div class="g-term">Malware</div><div class="g-def">Software designed to harm a system.</div></div>
+        <div class="glossary-item"><div class="g-term">Phishing</div><div class="g-def">Fake emails tricking users into revealing personal data.</div></div>
+        <div class="glossary-item"><div class="g-term">Pharming</div><div class="g-def">Redirecting a real website to a fake one.</div></div>
+        <div class="glossary-item"><div class="g-term">Virus</div><div class="g-def">Code attaching to files; spreads via user action.</div></div>
+        <div class="glossary-item"><div class="g-term">Worm</div><div class="g-def">Self-replicating malware spreading automatically.</div></div>
+        <div class="glossary-item"><div class="g-term">Trojan horse</div><div class="g-def">Malware disguised as legitimate software.</div></div>
+        <div class="glossary-item"><div class="g-term">Logic bomb</div><div class="g-def">Code triggered by a condition (e.g. a date).</div></div>
+        <div class="glossary-item"><div class="g-term">Bot</div><div class="g-def">Program that can take control to launch attacks.</div></div>
+        <div class="glossary-item"><div class="g-term">Spyware</div><div class="g-def">Secretly monitors user activity (key logging).</div></div>
+        <div class="glossary-item"><div class="g-term">Data privacy</div><div class="g-def">Keeping personal data from unauthorised access.</div></div>
+        <div class="glossary-item"><div class="g-term">Data protection laws</div><div class="g-def">Laws governing private/secure data handling (8 principles).</div></div>
+        <div class="glossary-item"><div class="g-term">Authentication</div><div class="g-def">Proving identity (password, biometric, token).</div></div>
+        <div class="glossary-item"><div class="g-term">Access rights</div><div class="g-def">Access levels restricting who can see/change data.</div></div>
+        <div class="glossary-item"><div class="g-term">Firewall</div><div class="g-def">Filters network traffic in/out of a network.</div></div>
+        <div class="glossary-item"><div class="g-term">Antivirus</div><div class="g-def">Detects/removes viruses; heuristics + database.</div></div>
+        <div class="glossary-item"><div class="g-term">Anti-spyware</div><div class="g-def">Detects/removes spyware.</div></div>
+        <div class="glossary-item"><div class="g-term">Plaintext</div><div class="g-def">Original readable message.</div></div>
+        <div class="glossary-item"><div class="g-term">Ciphertext</div><div class="g-def">Encrypted, unreadable output.</div></div>
+        <div class="glossary-item"><div class="g-term">Symmetric encryption</div><div class="g-def">Same key encrypts and decrypts.</div></div>
+        <div class="glossary-item"><div class="g-term">Asymmetric encryption</div><div class="g-def">Public + private key pair.</div></div>
+        <div class="glossary-item"><div class="g-term">Block cipher</div><div class="g-def">Encrypts a block of bits at once.</div></div>
+        <div class="glossary-item"><div class="g-term">Stream cipher</div><div class="g-def">Encrypts bits one at a time.</div></div>
+        <div class="glossary-item"><div class="g-term">Block chaining</div><div class="g-def">XORs previous ciphertext with next plaintext.</div></div>
+        <div class="glossary-item"><div class="g-term">Digital signature</div><div class="g-def">Verifies sender + integrity of a document.</div></div>
+        <div class="glossary-item"><div class="g-term">Hashing</div><div class="g-def">One-way function producing a fixed digest.</div></div>
+        <div class="glossary-item"><div class="g-term">Digital certificate</div><div class="g-def">Holds public key + owner ID; issued by a CA.</div></div>
+        <div class="glossary-item"><div class="g-term">PKI</div><div class="g-def">Public Key Infrastructure (certificates + crypto + CA).</div></div>
+        <div class="glossary-item"><div class="g-term">SSL/TLS</div><div class="g-def">Secure protocol (https + padlock).</div></div>
+      </div>
+    </div>
+
+    <footer>CS 9618 · Unit 6: Security, Privacy &amp; Data Integrity · Syllabus 2026 · Sources: Cambridge 9618 spec, Hodder textbook, past papers &amp; mark schemes (2021–2026)</footer>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
