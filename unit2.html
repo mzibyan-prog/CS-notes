@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Unit 2 — Communication</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <div class="sidebar-logo">📘 CS 9618</div>
+    <div class="sidebar-sub">Paper 1 · Theory Fundamentals</div>
+  </div>
+  <nav class="unit-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="unit1.html">Unit 1 · Information Representation</a>
+    <a href="unit2.html" class="active">Unit 2 · Communication</a>
+    <a class="soon">Unit 3 · Hardware 🔒</a>
+    <a class="soon">Unit 4 · Processor Fundamentals 🔒</a>
+    <a class="soon">Unit 5 · System Software 🔒</a>
+    <a class="soon">Unit 6 · Security &amp; Integrity 🔒</a>
+    <a class="soon">Unit 7 · Ethics &amp; Ownership 🔒</a>
+    <a class="soon">Unit 8 · Databases 🔒</a>
+  </nav>
+  <div class="sidebar-foot">Syllabus 2026 · AS Level</div>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<div class="content">
+  <div class="topbar">
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
+    <h1>Unit 2 — Communication</h1>
+    <span class="badge">Paper 1</span>
+  </div>
+
+  <div class="toc">
+    <h2>📑 Topics in this unit</h2>
+    <div class="toc-grid">
+      <a href="#s1"><span class="num">1</span> Networks (LAN / WAN / PAN)</a>
+      <a href="#s2"><span class="num">2</span> Client-server vs peer-to-peer</a>
+      <a href="#s3"><span class="num">3</span> Network topologies</a>
+      <a href="#s4"><span class="num">4</span> Transmission media</a>
+      <a href="#s5"><span class="num">5</span> Network hardware</a>
+      <a href="#s6"><span class="num">6</span> The internet &amp; DNS</a>
+      <a href="#s7"><span class="num">7</span> Protocols &amp; TCP/IP</a>
+      <a href="#s8"><span class="num">8</span> Email &amp; other protocols</a>
+      <a href="#s9"><span class="num">9</span> Circuit vs packet switching</a>
+      <a href="#glossary"><span class="num">★</span> Glossary</a>
+      <a href="#pp"><span class="num">📝</span> Past papers</a>
+    </div>
+  </div>
+
+  <main>
+
+    <div class="section open" id="s1">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>1. Networks <span class="sub">Node · LAN · WAN · PAN · WLAN</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>A <span class="kw" data-def="A device connected to a network — a computer, storage device or peripheral.">node</span> is any device connected to a network.</p>
+        <table class="styled-table">
+          <tr><th>Type</th><th>Meaning</th><th>Notes</th></tr>
+          <tr><td><span class="kw" data-def="Local Area Network — covers a small area, e.g. a building.">LAN</span></td><td>Local Area Network</td><td>Small area (building/site); usually private</td></tr>
+          <tr><td><span class="kw" data-def="Wireless Local Area Network.">WLAN</span></td><td>Wireless LAN</td><td>LAN without cables (Wi-Fi)</td></tr>
+          <tr><td><span class="kw" data-def="Wide Area Network — covers a large geographical area, e.g. between cities.">WAN</span></td><td>Wide Area Network</td><td>Large area; uses third-party links (e.g. leased lines, internet)</td></tr>
+          <tr><td><span class="kw" data-def="Personal Area Network — centred around one person/workspace.">PAN</span></td><td>Personal Area Network</td><td>Around a person (e.g. phone + earbuds)</td></tr>
+        </table>
+        <div class="tip"><strong>📌 Exam tip:</strong> Know the difference between LAN and WAN — a WAN spans large distances and typically uses external/third-party communication links.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s2">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>2. Client-server vs peer-to-peer <span class="sub">Plus thin &amp; thick clients</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Network that uses separate dedicated servers and specific client workstations.">Client-server</span>: dedicated <strong>server(s)</strong> provide services; <strong>clients</strong> request them.</p>
+        <p><span class="kw" data-def="Network in which each node can share its files with all other nodes. No central server.">Peer-to-peer</span>: every node can share files with every other node; no central server.</p>
+        <table class="styled-table">
+          <tr><th>Feature</th><th>Client-server</th><th>Peer-to-peer</th></tr>
+          <tr><td>Central control</td><td>Yes (server)</td><td>No (each node equal)</td></tr>
+          <tr><td>Security</td><td>Easier to manage centrally</td><td>Harder to manage</td></tr>
+          <tr><td>Cost / setup</td><td>Expensive, needs expertise</td><td>Cheap, simple</td></tr>
+          <tr><td>If server/peer fails</td><td>Services may stop</td><td>Network usually continues</td></tr>
+          <tr><td>Typical use</td><td>Schools, offices</td><td>Small/home networks, file sharing</td></tr>
+        </table>
+        <p><span class="kw" data-def="Device that needs access to the internet and relies on a more powerful computer for processing.">Thin client</span>: needs network/internet to work; processing done elsewhere.</p>
+        <p><span class="kw" data-def="Device that can work offline and online, and do its own processing.">Thick client</span>: can work offline and do its own processing.</p>
+        <div class="pp-block">
+          <span class="pp-link">Frequent Paper 1 Q</span>
+          <q>Give two advantages and one disadvantage of a client-server network compared to peer-to-peer.</q>
+          <details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content">Advantages: centralised security/backup, easier management, central file storage. Disadvantage: more expensive / needs expert maintenance / if server fails, network affected.</div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s3">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>3. Network topologies <span class="sub">Bus · Star · Mesh · Hybrid</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Network using a single central cable to which all devices are connected.">Bus topology</span>: single central cable; each node reads every packet and ignores those not addressed to it.</p>
+        <ul>
+          <li><strong>Advantages:</strong> cheap, little cabling, easy to expand; if one node fails the rest keep working.</li>
+          <li><strong>Disadvantages:</strong> if the main cable fails the whole network fails; performance drops under heavy load; insecure (every node sees every packet); needs <strong>terminators</strong> to stop signal reflection.</li>
+        </ul>
+        <p><span class="kw" data-def="Network using a central hub/switch with each device having its own dedicated connection.">Star topology</span>: every device has its own cable to a central <strong>hub/switch</strong>.</p>
+        <ul>
+          <li><strong>Advantages:</strong> if one cable fails only that device is affected; easy to add/remove nodes; consistent performance; secure (data goes only to the destination).</li>
+          <li><strong>Disadvantages:</strong> central device is a single point of failure; more cabling than bus.</li>
+        </ul>
+        <p><span class="kw" data-def="Network where each node is connected to several others, giving multiple paths.">Mesh topology</span>: each node connected to several others, providing multiple routes.</p>
+        <ul>
+          <li><strong>Advantages:</strong> very reliable (multiple paths), no single point of failure.</li>
+          <li><strong>Disadvantages:</strong> expensive, complex wiring.</li>
+        </ul>
+        <div class="diagram">
+          <div class="diagram-title">Star vs Bus — visual</div>
+          <div class="diagram-flex">
+            <div style="text-align:center;min-width:160px;">
+              <div style="font-size:.8rem;color:var(--accent);margin-bottom:.4rem;">STAR</div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                <div style="width:14px;height:14px;background:var(--accent);border-radius:50%;"></div>
+                <div style="width:1px;height:18px;background:var(--border);"></div>
+                <div style="display:flex;gap:10px;">
+                  <div style="width:10px;height:10px;background:var(--surface2);border-radius:50%;"></div>
+                  <div style="width:10px;height:10px;background:var(--surface2);border-radius:50%;"></div>
+                  <div style="width:10px;height:10px;background:var(--surface2);border-radius:50%;"></div>
+                </div>
+              </div>
+            </div>
+            <div style="text-align:center;min-width:160px;">
+              <div style="font-size:.8rem;color:var(--green);margin-bottom:.4rem;">BUS</div>
+              <div style="position:relative;height:40px;width:150px;border-bottom:3px solid var(--green);margin:0 auto;"></div>
+              <div style="display:flex;justify-content:space-between;width:150px;margin:0 auto;">
+                <div style="width:10px;height:10px;background:var(--surface2);border-radius:50%;"></div>
+                <div style="width:10px;height:10px;background:var(--surface2);border-radius:50%;"></div>
+                <div style="width:10px;height:10px;background:var(--surface2);border-radius:50%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info"><strong>✏️ Past paper:</strong> Very common — compare star vs bus, or justify why a star is chosen for a school network.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s4">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>4. Transmission media <span class="sub">Twisted pair · Coaxial · Fibre optic · Wireless</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <table class="styled-table">
+          <tr><th>Medium</th><th>Description</th><th>Key features</th></tr>
+          <tr><td>Twisted pair</td><td>Pairs of copper wires twisted together</td><td>Cheap, easy to install; susceptible to interference; short distances</td></tr>
+          <tr><td>Coaxial</td><td>Single copper core with shielding</td><td>Better shielding; used in older cable TV networks</td></tr>
+          <tr><td>Fibre optic</td><td>Glass/plastic fibre carrying light</td><td>Very fast, high bandwidth, low attenuation, immune to electrical interference, secure; expensive</td></tr>
+          <tr><td>Wireless</td><td>Radio waves (spread spectrum)</td><td>No cabling; mobility; range ~30–50 m; can suffer interference/security issues</td></tr>
+        </table>
+        <div class="tip"><strong>📌 Exam tip:</strong> "Why use fibre optic?" → higher bandwidth/faster, less signal loss over distance, immune to electromagnetic interference, harder to tap (more secure).</div>
+      </div>
+    </div>
+
+    <div class="section" id="s5">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>5. Network hardware <span class="sub">Hub · Switch · Router · Modem · NIC · WAP</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <table class="styled-table">
+          <tr><th>Device</th><th>Function</th></tr>
+          <tr><td><span class="kw" data-def="Connects devices to form a LAN and sends incoming packets to ALL devices.">Hub</span></td><td>Sends incoming data packets to <strong>all</strong> devices on the LAN.</td></tr>
+          <tr><td><span class="kw" data-def="Connects devices to form a LAN and sends packets only to the specific destination address.">Switch</span></td><td>Sends data packets <strong>only to the destination</strong> address (more efficient than a hub).</td></tr>
+          <tr><td><span class="kw" data-def="Routes data packets between different networks, e.g. joining LANs to form a WAN.">Router</span></td><td>Routes packets <strong>between different networks</strong> (e.g. joins LANs into a WAN).</td></tr>
+          <tr><td><span class="kw" data-def="Modulator-demodulator: converts digital to analogue and analogue to digital.">Modem</span></td><td>Converts digital→analogue (to send over phone lines) and analogue→digital.</td></tr>
+          <tr><td>NIC</td><td>Network Interface Card — lets a device physically connect to a network.</td></tr>
+          <tr><td><span class="kw" data-def="Wireless Access Point — lets a device join a LAN without a wired connection.">WAP</span></td><td>Allows devices to access a LAN without a wired connection.</td></tr>
+          <tr><td><span class="kw" data-def="A server storing central files and data for users on the network.">File server</span></td><td>Stores central files/data accessed by users logged onto the network.</td></tr>
+        </table>
+        <div class="info"><strong>✏️ Past paper:</strong> "State the device used to connect two different networks" → <strong>router</strong>. Distinguish hub (broadcasts to all) from switch (only to destination).</div>
+      </div>
+    </div>
+
+    <div class="section" id="s6">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>6. The internet &amp; DNS <span class="sub">WWW · URL · IP address · HTML</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="A global network of interconnected networks.">The internet</span> is a global network of networks. The <span class="kw" data-def="World Wide Web — a collection of web pages accessed via the internet.">WWW</span> is the collection of web pages accessed <em>via</em> the internet (they are not the same thing).</p>
+        <p><span class="kw" data-def="Uniform Resource Locator — the address of a resource on the web.">URL</span> example: <code>https://www.example.com/folder/file.html</code></p>
+        <ul>
+          <li><strong>https</strong> — protocol</li>
+          <li><strong>www.example.com</strong> — domain name</li>
+          <li><strong>/folder/file.html</strong> — path to the file</li>
+        </ul>
+        <p><span class="kw" data-def="Domain Name System — translates human-readable domain names into IP addresses.">DNS</span> translates a domain name into an <span class="kw" data-def="Internet Protocol address — a unique numeric address for a device on a network.">IP address</span>.</p>
+        <div class="worked">
+          <div class="step"><span class="step-num">1</span> User types www.example.com</div>
+          <div class="step"><span class="step-num">2</span> Browser asks a DNS server for the matching IP address</div>
+          <div class="step"><span class="step-num">3</span> DNS returns the IP (e.g. 203.0.113.5)</div>
+          <div class="step"><span class="step-num">4</span> Browser connects to that IP to fetch the page</div>
+        </div>
+        <p><span class="kw" data-def="HyperText Markup Language — used to structure web pages.">HTML</span> is used to write/structure web pages. Browsers interpret HTML to display them.</p>
+        <div class="pp-block">
+          <span class="pp-link">Frequent Paper 1 Q</span>
+          <q>Describe the purpose of the DNS.</q>
+          <details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content">Translates a domain name into its corresponding IP address so the browser can locate the correct web server.</div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s7">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>7. Protocols &amp; TCP/IP <span class="sub">Four layers · HTTP/HTTPS · FTP</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>A <span class="kw" data-def="A set of rules governing how data is transmitted and received.">protocol</span> is a set of rules for communication.</p>
+        <div class="diagram">
+          <div class="diagram-title">TCP/IP four layers</div>
+          <table class="styled-table">
+            <tr><th>Layer</th><th>Example protocol</th></tr>
+            <tr><td>Application</td><td>HTTP, HTTPS, FTP, SMTP</td></tr>
+            <tr><td>Transport</td><td>TCP</td></tr>
+            <tr><td>Internet (Network)</td><td>IP</td></tr>
+            <tr><td>Link (Network access)</td><td>Ethernet / Wi-Fi</td></tr>
+          </table>
+        </div>
+        <table class="styled-table">
+          <tr><th>Protocol</th><th>Purpose</th></tr>
+          <tr><td><span class="kw" data-def="HyperText Transfer Protocol — for transferring web pages.">HTTP</span></td><td>Transfers web pages (unencrypted)</td></tr>
+          <tr><td><span class="kw" data-def="HTTP Secure — encrypted version of HTTP.">HTTPS</span></td><td>Encrypted/secure transfer of web pages</td></tr>
+          <tr><td><span class="kw" data-def="File Transfer Protocol — for transferring files.">FTP</span></td><td>Uploads/downloads files between computers</td></tr>
+        </table>
+        <div class="tip"><strong>📌 Exam tip:</strong> You may be asked to name the four TCP/IP layers and one protocol per layer — memorise the table above.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s8">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>8. Email &amp; other protocols <span class="sub">SMTP · POP3 · IMAP · Ethernet · BitTorrent</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <table class="styled-table">
+          <tr><th>Protocol</th><th>Purpose</th></tr>
+          <tr><td><span class="kw" data-def="Simple Mail Transfer Protocol — used to SEND email.">SMTP</span></td><td>Sends email (from client to server / server to server)</td></tr>
+          <tr><td><span class="kw" data-def="Post Office Protocol — downloads email from server to device and (usually) deletes from server.">POP3</span></td><td>Retrieves/downloads email from a server to a device</td></tr>
+          <tr><td><span class="kw" data-def="Internet Message Access Protocol — keeps email on the server so it can be read from multiple devices.">IMAP</span></td><td>Accesses email kept on the server (syncs across devices)</td></tr>
+        </table>
+        <p><span class="kw" data-def="A LAN technology that defines how devices communicate on a wired LAN.">Ethernet</span> defines how data is sent on a wired LAN (using MAC addresses and frames).</p>
+        <p><span class="kw" data-def="A peer-to-peer file-sharing protocol that splits files into small parts shared among peers.">BitTorrent</span> is a peer-to-peer file-sharing protocol: a file is split into pieces shared between many peers.</p>
+        <ul>
+          <li><span class="kw" data-def="A computer participating in a BitTorrent swarm.">Peer</span> — a computer in the swarm.</li>
+          <li><span class="kw" data-def="All the peers sharing the same file in BitTorrent.">Swarm</span> — all peers sharing one file.</li>
+          <li><span class="kw" data-def="A server holding details of other peers in the swarm.">Tracker</span> — holds details of peers in the swarm.</li>
+          <li><span class="kw" data-def="A peer that downloads but does not upload/share content.">Leech</span> — downloads without uploading.</li>
+          <li><span class="kw" data-def="A peer that uploads the full file to others.">Seed</span> — has the full file and uploads it.</li>
+        </ul>
+        <div class="info"><strong>✏️ Past paper:</strong> "Describe the difference between SMTP and POP3" → SMTP is for <em>sending</em> email, POP3 is for <em>receiving/downloading</em> email.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s9">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>9. Circuit vs packet switching <span class="sub">Packets · Headers · Routing</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="A dedicated communication path is set up between sender and receiver for the whole session.">Circuit switching</span>: a dedicated path is established and held for the whole communication (e.g. traditional phone calls).</p>
+        <p><span class="kw" data-def="Data is split into packets, each sent independently and reassembled at the destination.">Packet switching</span>: data is split into <span class="kw" data-def="A small block of data (with a header) sent over a network.">packets</span>; each packet travels independently and is reassembled at the destination.</p>
+        <table class="styled-table">
+          <tr><th>Circuit switching</th><th>Packet switching</th></tr>
+          <tr><td>Dedicated path for whole session</td><td>No dedicated path</td></tr>
+          <tr><td>Fixed bandwidth reserved</td><td>Bandwidth shared</td></tr>
+          <tr><td>Data arrives in order</td><td>Packets may arrive out of order (reassembled)</td></tr>
+          <tr><td>Less efficient for bursts</td><td>Efficient use of network</td></tr>
+          <tr><td>E.g. old telephone networks</td><td>E.g. the internet</td></tr>
+        </table>
+        <p>Each packet has a <span class="kw" data-def="Part of a packet containing source, destination, sequence number and hop count.">header</span> with: source address, destination address, sequence number, and <span class="kw" data-def="The number of routers a packet may still pass through before being discarded.">hop count</span>.</p>
+        <div class="worked">
+          <div class="step"><span class="step-num">1</span> Data is split into packets, each with a header.</div>
+          <div class="step"><span class="step-num">2</span> Each packet is routed independently (may take different routes).</div>
+          <div class="step"><span class="step-num">3</span> At the destination, packets are reassembled into the original data.</div>
+        </div>
+        <div class="pp-block">
+          <span class="pp-link">Frequent Paper 1 Q</span>
+          <q>Explain how packet switching is used to send a web page. Describe one possible problem.</q>
+          <details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content">Data split into packets, each with a header (source, destination, sequence no., hop count). Packets routed independently, may take different routes, reassembled at destination. Problem: packets can arrive out of order / be lost / delayed (real-time issues).</div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="section open" id="pp" style="border-color:var(--amber);">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3 style="color:var(--amber);">📝 Past paper questions — Unit 2</h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="pp-block"><span class="pp-link">Q1</span><q>Explain the difference between a LAN and a WAN. [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">LAN covers a small/limited geographical area; WAN covers a large area. LAN is usually private; WAN uses third-party/external links.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q2</span><q>Give two advantages and one disadvantage of a client-server network over peer-to-peer. [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Adv: centralised security/backup, easier management, central file storage. Disadv: more expensive, needs expertise, server failure affects network.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q3</span><q>Describe the purpose of a switch and a router. [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content"><strong>Switch:</strong> sends packets to a specific destination on a LAN. <strong>Router:</strong> routes packets between different networks (e.g. LAN to WAN).</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q4</span><q>Describe the purpose of the DNS. [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Translates domain names into IP addresses so the browser can locate the correct server.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q5</span><q>State the difference between SMTP and POP3. [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">SMTP is used to <strong>send</strong> email; POP3 is used to <strong>receive/download</strong> email from a server.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q6</span><q>Explain how packet switching is used to send data, and one problem with it. [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Data split into packets with headers; routed independently (different routes); reassembled at destination. Problem: out-of-order arrival / lost packets / delay.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q7</span><q>Explain two advantages of fibre optic cable over copper cable. [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Higher bandwidth/faster; lower signal loss over distance; immune to electromagnetic interference; more secure.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q8</span><q>Define the BitTorrent terms: peer, swarm, tracker, leech, seed. [5]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content"><strong>Peer:</strong> a computer in the swarm. <strong>Swarm:</strong> all peers sharing a file. <strong>Tracker:</strong> server holding peer details. <strong>Leech:</strong> downloads without uploading. <strong>Seed:</strong> has full file and uploads it.</div></details></div>
+      </div>
+    </div>
+
+    <div class="glossary" id="glossary">
+      <h2>★ Keywords glossary — Unit 2</h2>
+      <div class="glossary-grid">
+        <div class="glossary-item"><div class="g-term">Node</div><div class="g-def">Device connected to a network.</div></div>
+        <div class="glossary-item"><div class="g-term">LAN</div><div class="g-def">Local Area Network — small area (a building).</div></div>
+        <div class="glossary-item"><div class="g-term">WAN</div><div class="g-def">Wide Area Network — large geographical area.</div></div>
+        <div class="glossary-item"><div class="g-term">PAN</div><div class="g-def">Personal Area Network — around one person.</div></div>
+        <div class="glossary-item"><div class="g-term">WLAN</div><div class="g-def">Wireless LAN.</div></div>
+        <div class="glossary-item"><div class="g-term">Client-server</div><div class="g-def">Network with dedicated servers and clients.</div></div>
+        <div class="glossary-item"><div class="g-term">Peer-to-peer</div><div class="g-def">Each node shares files with all others; no server.</div></div>
+        <div class="glossary-item"><div class="g-term">Thin client</div><div class="g-def">Needs network; processing done elsewhere.</div></div>
+        <div class="glossary-item"><div class="g-term">Thick client</div><div class="g-def">Works offline and does its own processing.</div></div>
+        <div class="glossary-item"><div class="g-term">Hub</div><div class="g-def">Sends packets to all devices on a LAN.</div></div>
+        <div class="glossary-item"><div class="g-term">Switch</div><div class="g-def">Sends packets only to the destination on a LAN.</div></div>
+        <div class="glossary-item"><div class="g-term">Router</div><div class="g-def">Routes packets between different networks.</div></div>
+        <div class="glossary-item"><div class="g-term">Modem</div><div class="g-def">Modulator-demodulator; digital ↔ analogue.</div></div>
+        <div class="glossary-item"><div class="g-term">WAP</div><div class="g-def">Wireless Access Point — wireless LAN entry.</div></div>
+        <div class="glossary-item"><div class="g-term">File server</div><div class="g-def">Stores central files for network users.</div></div>
+        <div class="glossary-item"><div class="g-term">Bus topology</div><div class="g-def">Single central cable; one device transmits at a time.</div></div>
+        <div class="glossary-item"><div class="g-term">Star topology</div><div class="g-def">Central hub/switch; each device has its own cable.</div></div>
+        <div class="glossary-item"><div class="g-term">Mesh topology</div><div class="g-def">Nodes connect to several others; multiple paths.</div></div>
+        <div class="glossary-item"><div class="g-term">Spread spectrum</div><div class="g-def">Wideband radio frequency, ~30–50 m range.</div></div>
+        <div class="glossary-item"><div class="g-term">Protocol</div><div class="g-def">Set of rules for data transmission.</div></div>
+        <div class="glossary-item"><div class="g-term">DNS</div><div class="g-def">Translates domain names into IP addresses.</div></div>
+        <div class="glossary-item"><div class="g-term">URL</div><div class="g-def">Uniform Resource Locator — web address.</div></div>
+        <div class="glossary-item"><div class="g-term">HTTP / HTTPS</div><div class="g-def">Transfer web pages (HTTPS = encrypted).</div></div>
+        <div class="glossary-item"><div class="g-term">FTP</div><div class="g-def">File Transfer Protocol.</div></div>
+        <div class="glossary-item"><div class="g-term">SMTP</div><div class="g-def">Sends email.</div></div>
+        <div class="glossary-item"><div class="g-term">POP3</div><div class="g-def">Downloads email from a server.</div></div>
+        <div class="glossary-item"><div class="g-term">IMAP</div><div class="g-def">Accesses email kept on the server.</div></div>
+        <div class="glossary-item"><div class="g-term">Ethernet</div><div class="g-def">LAN technology for wired networks.</div></div>
+        <div class="glossary-item"><div class="g-term">BitTorrent</div><div class="g-def">Peer-to-peer file-sharing protocol.</div></div>
+        <div class="glossary-item"><div class="g-term">Packet</div><div class="g-def">Block of data with a header, sent over a network.</div></div>
+        <div class="glossary-item"><div class="g-term">Packet switching</div><div class="g-def">Data split into packets, sent independently, reassembled.</div></div>
+        <div class="glossary-item"><div class="g-term">Circuit switching</div><div class="g-def">Dedicated path held for the whole session.</div></div>
+        <div class="glossary-item"><div class="g-term">Packet header</div><div class="g-def">Source, destination, sequence number, hop count.</div></div>
+        <div class="glossary-item"><div class="g-term">Hop count</div><div class="g-def">Number of routers a packet may still pass through.</div></div>
+      </div>
+    </div>
+
+    <footer>CS 9618 · Unit 2: Communication · Syllabus 2026 · Sources: Cambridge 9618 spec, Hodder textbook, past papers &amp; mark schemes (2021–2026)</footer>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
