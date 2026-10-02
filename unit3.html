@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Unit 3 — Hardware</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <div class="sidebar-logo">📘 CS 9618</div>
+    <div class="sidebar-sub">Paper 1 · Theory Fundamentals</div>
+  </div>
+  <nav class="unit-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="unit1.html">Unit 1 · Information Representation</a>
+    <a href="unit2.html">Unit 2 · Communication</a>
+    <a href="unit3.html" class="active">Unit 3 · Hardware</a>
+    <a class="soon">Unit 4 · Processor Fundamentals 🔒</a>
+    <a class="soon">Unit 5 · System Software 🔒</a>
+    <a class="soon">Unit 6 · Security &amp; Integrity 🔒</a>
+    <a class="soon">Unit 7 · Ethics &amp; Ownership 🔒</a>
+    <a class="soon">Unit 8 · Databases 🔒</a>
+  </nav>
+  <div class="sidebar-foot">Syllabus 2026 · AS Level</div>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<div class="content">
+  <div class="topbar">
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
+    <h1>Unit 3 — Hardware</h1>
+    <span class="badge">Paper 1</span>
+  </div>
+
+  <div class="toc">
+    <h2>📑 Topics in this unit</h2>
+    <div class="toc-grid">
+      <a href="#s1"><span class="num">1</span> CPU Architecture</a>
+      <a href="#s2"><span class="num">2</span> Input Devices</a>
+      <a href="#s3"><span class="num">3</span> Output Devices</a>
+      <a href="#s4"><span class="num">4</span> Storage Devices</a>
+      <a href="#s5"><span class="num">5</span> Logic Gates</a>
+      <a href="#glossary"><span class="num">★</span> Glossary</a>
+      <a href="#pp"><span class="num">📝</span> Past papers</a>
+    </div>
+  </div>
+
+  <main>
+
+    <div class="section open" id="s1">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>1. CPU Architecture <span class="sub">ALU, CU, Registers</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><strong>CPU (Central Processing Unit)</strong> is the computer's brain and is responsible for executing instructions.</p>
+        <div class="diagram">
+          <div class="diagram-title">📊 CPU Components</div>
+          <ul>
+            <li><span class="kw" data-def="Performs arithmetic and logical operations.">ALU</span>: Arithmetic Logic Unit</li>
+            <li><span class="kw" data-def="Controls the operation of the processor.">CU</span>: Control Unit</li>
+            <li><span class="kw" data-def="Fast storage locations that hold temporary data.">Registers</span>: Used for quick data access.</li>
+          </ul>
+        </div>
+        <div class="info">
+          <strong>📝 Note:</strong> Ensure knowledge of the function of each component and their roles in processing data — this comes up frequently on exams.
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s2">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>2. Input Devices <span class="sub">Examples &amp; Functionality</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Devices used to provide data and control signals to a computer system.">Input devices</span> allow users to enter information or commands into a computer.</p>
+        <table class="styled-table">
+          <tr><th>Device</th><th>Example</th><th>Functionality</th></tr>
+          <tr><td><span class="kw" data-def="Input device allowing text and commands.">Keyboard</span></td><td>Standard input device.</td><td>Allows user to type data into the computer.</td></tr>
+          <tr><td><span class="kw" data-def="Input device for navigating the GUI.">Mouse</span></td><td>Pointing device.</td><td>Selects and interacts with software UI.</td></tr>
+          <tr><td><span class="kw" data-def="Converts physical documents into digital data.">Scanner</span></td><td>Digitizes documents.</td><td>Allows physical documents to be converted for digital use.</td></tr>
+          <tr><td><span class="kw" data-def="Converts sound into audio signals.">Microphone</span></td><td>Captures sound.</td><td>Inputs audio data into the computer.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="section" id="s3">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>3. Output Devices <span class="sub">Examples &amp; Functionality</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Devices used to convey information from a computer system to a user.">Output devices</span> convert computer data into human-readable form.</p>
+        <table class="styled-table">
+          <tr><th>Device</th><th>Example</th><th>Functionality</th></tr>
+          <tr><td><span class="kw" data-def="Displays visual output from the computer.">Monitor</span></td><td>Standard output device.</td><td>Shows visual interface and applications.</td></tr>
+          <tr><td><span class="kw" data-def="Produces hard copies of documents.">Printer</span></td><td>Standard printer.</td><td>Outputs documents and images on paper.</td></tr>
+          <tr><td><span class="kw" data-def="Outputs sound produced by the computer's audio system.">Speakers</span></td><td>Outputs audio data.</td><td>Conveys sound to users.</td></tr>
+          <tr><td><span class="kw" data-def="Outputs audio specific to physical items.">Headphones</span></td><td>Personal audio device.</td><td>Allows private listening of audio.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="section" id="s4">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>4. Storage Devices <span class="sub">Types &amp; Characteristics</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>Storage devices are classified into two categories: <span class="kw" data-def="Temporary memory used for immediate data processing.">Primary storage</span> (e.g., RAM) and <span class="kw" data-def="Long-term storage for data retention.">Secondary storage</span> (e.g., SSD, HDD).</p>
+        <table class="styled-table">
+          <tr><th>Type</th><th>Details</th><th>Speed</th><th>Capacity</th></tr>
+          <tr><td><span class="kw" data-def="Volatile storage used temporarily while the computer is on.">RAM</span></td><td>Holds data and instructions actively being used.</td><td>Fast</td><td>Smaller (GB)</td></tr>
+          <tr><td><span class="kw" data-def="Non-volatile storage for long-term data retention.">HDD</span></td><td>Magnetic disk storage, slower read/write speeds.</td><td>Slower than SSD</td><td>Larger (TB)</td></tr>
+          <tr><td><span class="kw" data-def="High-speed storage with no moving parts.">SSD</span></td><td>Flash memory storage, faster than HDD.</td><td>Fast</td><td>Smaller (GB-TB)</td></tr>
+        </table>
+        <div class="info"><strong>✏️ Exam tip:</strong> Differentiate between solid-state (SSD) vs. traditional disk drives (HDD) based on speed, reliability, and cost.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s5">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>5. Logic Gates <span class="sub">AND · OR · NOT · Truth Tables</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Basic building blocks of digital circuits that perform logical operations.">Logic gates</span> are electronic devices that perform operations on one or more binary inputs to produce a single binary output.</p>
+        <table class="styled-table">
+          <tr><th>Gate</th><th>Symbol</th><th>Operation</th><th>Truth Table</th></tr>
+          <tr><td>AND</td><td>🔗</td><td>1 only if all inputs = 1</td><td>
+            <pre>
+A | B | Output
+0 | 0 | 0
+0 | 1 | 0
+1 | 0 | 0
+1 | 1 | 1
+            </pre>
+            </td>
+          </tr>
+          <tr><td>OR</td><td>🔄</td><td>1 if at least one input = 1</td><td>
+            <pre>
+A | B | Output
+0 | 0 | 0
+0 | 1 | 1
+1 | 0 | 1
+1 | 1 | 1
+            </pre>
+            </td>
+          </tr>
+          <tr><td>NOT</td><td>❌</td><td>Inverts the input</td><td>
+            <pre>
+A | Output
+0 | 1
+1 | 0
+            </pre>
+            </td>
+          </tr>
+        </table>
+        <p>Complex gate combinations produce more sophisticated logical functions. <span class="kw" data-def="Gates are the basis of digital circuits and computing hardware.">Logic gates</span> are integral in creating registers, ALUs, and more.</p>
+      </div>
+    </div>
+
+    <div class="section open" id="pp" style="border-color:var(--amber);">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3 style="color:var(--amber);">📝 Past paper questions — Unit 3</h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="pp-block"><span class="pp-link">Q1</span><q>Explain the function of the ALU. [2]</q><details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content">Performs arithmetic calculations (add, subtract) and logical operations (AND, OR, NOT).</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q2</span><q>Describe the purpose of an input device and give two examples. [3]</q><details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content">Allows user to enter data into a computer (e.g. keyboard, mouse).</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q3</span><q>Define the term "storage device" and give two examples. [3]</q><details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content">A device for retaining data; examples include SSD and HDD.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q4</span><q>What is the difference between RAM and ROM? [4]</q><details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content">RAM is volatile (data lost when power off); ROM is non-volatile (data retained). ROM stores firmware; RAM stores data for current tasks.</div></details></div>
+      </div>
+    </div>
+
+    <div class="glossary" id="glossary">
+      <h2>★ Keywords glossary — Unit 3</h2>
+      <div class="glossary-grid">
+        <div class="glossary-item"><div class="g-term">CPU</div><div class="g-def">Central Processing Unit — the brain of the computer.</div></div>
+        <div class="glossary-item"><div class="g-term">ALU</div><div class="g-def">Arithmetic Logic Unit — performs arithmetic and logic operations.</div></div>
+        <div class="glossary-item"><div class="g-term">CU</div><div class="g-def">Control Unit — manages execution of instructions.</div></div>
+        <div class="glossary-item"><div class="g-term">Input device</div><div class="g-def">Allows user to enter data into the computer.</div></div>
+        <div class="glossary-item"><div class="g-term">Output device</div><div class="g-def">Converts computer data into human-readable form.</div></div>
+        <div class="glossary-item"><div class="g-term">Storage device</div><div class="g-def">Retains data; can be primary (RAM) or secondary (HDD, SSD).</div></div>
+        <div class="glossary-item"><div class="g-term">RAM</div><div class="g-def">Random Access Memory — temporary storage.</div></div>
+        <div class="glossary-item"><div class="g-term">HDD</div><div class="g-def">Hard Disk Drive — traditional spinning disk storage.</div></div>
+        <div class="glossary-item"><div class="g-term">SSD</div><div class="g-def">Solid State Drive — faster, no moving parts.</div></div>
+        <div class="glossary-item"><div class="g-term">Logic gate</div><div class="g-def">Basic building block of digital circuits; performs logical operations.</div></div>
+      </div>
+    </div>
+
+    <footer>CS 9618 · Unit 3: Hardware · Syllabus 2026 · Sources: Cambridge 9618 spec, Hodder textbook, past papers &amp; mark schemes (2021–2026)</footer>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
