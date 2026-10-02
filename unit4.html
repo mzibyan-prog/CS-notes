@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Unit 4 — Processor Fundamentals</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <div class="sidebar-logo">📘 CS 9618</div>
+    <div class="sidebar-sub">Paper 1 · Theory Fundamentals</div>
+  </div>
+  <nav class="unit-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="unit1.html">Unit 1 · Information Representation</a>
+    <a href="unit2.html">Unit 2 · Communication</a>
+    <a href="unit3.html">Unit 3 · Hardware</a>
+    <a href="unit4.html" class="active">Unit 4 · Processor Fundamentals</a>
+    <a class="soon">Unit 5 · System Software 🔒</a>
+    <a class="soon">Unit 6 · Security &amp; Integrity 🔒</a>
+    <a class="soon">Unit 7 · Ethics &amp; Ownership 🔒</a>
+    <a class="soon">Unit 8 · Databases 🔒</a>
+  </nav>
+  <div class="sidebar-foot">Syllabus 2026 · AS Level</div>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<div class="content">
+  <div class="topbar">
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
+    <h1>Unit 4 — Processor Fundamentals</h1>
+    <span class="badge">Paper 1</span>
+  </div>
+
+  <div class="toc">
+    <h2>📑 Topics in this unit</h2>
+    <div class="toc-grid">
+      <a href="#s1"><span class="num">1</span> Registers &amp; buses</a>
+      <a href="#s2"><span class="num">2</span> Fetch-execute cycle</a>
+      <a href="#s3"><span class="num">3</span> Register Transfer Notation</a>
+      <a href="#s4"><span class="num">4</span> Interrupts</a>
+      <a href="#s5"><span class="num">5</span> Assembly language basics</a>
+      <a href="#s6"><span class="num">6</span> Instruction types</a>
+      <a href="#s7"><span class="num">7</span> Addressing modes</a>
+      <a href="#s8"><span class="num">8</span> Trace tables &amp; assembly</a>
+      <a href="#glossary"><span class="num">★</span> Glossary</a>
+      <a href="#pp"><span class="num">📝</span> Past papers</a>
+    </div>
+  </div>
+
+  <main>
+
+    <div class="section open" id="s1">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>1. Registers &amp; buses <span class="sub">PC, MAR, MDR, CIR, ACC, IX</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Fast storage locations in the CPU that hold data or instructions temporarily.">Registers</span> are small, ultra-fast storage areas in the CPU. Key registers:</p>
+        <table class="styled-table">
+          <tr><th>Register</th><th>Full name</th><th>Purpose</th></tr>
+          <tr><td><span class="kw" data-def="Holds the memory address of the next instruction to fetch.">PC</span></td><td>Program Counter</td><td>Stores the address of the next instruction to execute</td></tr>
+          <tr><td><span class="kw" data-def="Holds a memory address before it is used to fetch data.">MAR</span></td><td>Memory Address Register</td><td>Temporarily stores the address before accessing memory</td></tr>
+          <tr><td><span class="kw" data-def="Holds data or instructions fetched from memory.">MDR</span></td><td>Memory Data Register</td><td>Temporarily stores data/instructions fetched from memory</td></tr>
+          <tr><td><span class="kw" data-def="Holds the current instruction being executed.">CIR</span></td><td>Current Instruction Register</td><td>Holds the instruction currently being decoded and executed</td></tr>
+          <tr><td><span class="kw" data-def="Main working register where arithmetic/logic results are stored.">ACC</span></td><td>Accumulator</td><td>Stores operands and results of arithmetic/logic operations</td></tr>
+          <tr><td><span class="kw" data-def="Used in indexed addressing mode to calculate memory addresses.">IX</span></td><td>Index Register</td><td>Used in indexed addressing; modified during loops</td></tr>
+          <tr><td><span class="kw" data-def="Stores flags (Z, C, N, V) indicating status of last operation.">SR</span></td><td>Status Register</td><td>Holds flags: Zero (Z), Carry (C), Negative (N), Overflow (V)</td></tr>
+        </table>
+        <p><span class="kw" data-def="Wires connecting CPU, memory, and I/O devices in parallel.">Buses</span> are parallel pathways carrying data throughout the system:</p>
+        <table class="styled-table">
+          <tr><th>Bus</th><th>Direction</th><th>Carries</th><th>Notes</th></tr>
+          <tr><td><span class="kw" data-def="Carries memory addresses from CPU to memory.">Address bus</span></td><td>Unidirectional (CPU → Memory)</td><td>Memory addresses</td><td>Width determines max addressable locations (e.g., 16-bit = 2¹⁶ = 65,536)</td></tr>
+          <tr><td><span class="kw" data-def="Carries data between CPU, memory, and I/O.">Data bus</span></td><td>Bidirectional</td><td>Data, instructions, or addresses</td><td>Width = word length (16-bit, 32-bit, 64-bit)</td></tr>
+          <tr><td><span class="kw" data-def="Carries control signals from CU to all components.">Control bus</span></td><td>Bidirectional</td><td>Control signals (read, write, interrupt)</td><td>Usually 8-bit; synchronised by system clock</td></tr>
+        </table>
+        <div class="info"><strong>📌 Exam tip:</strong> Understand the role of each register in the fetch-execute cycle. Know that the address bus is <strong>unidirectional</strong> but the data bus is <strong>bidirectional</strong>.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s2">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>2. Fetch-execute cycle <span class="sub">Three stages: Fetch, Decode, Execute</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>The <span class="kw" data-def="Repeated process of fetching an instruction, decoding it, and executing it.">fetch-execute cycle</span> is the basic operation of every CPU. It repeats continuously.</p>
+        <div class="worked">
+          <div style="margin-bottom: 1rem;">
+            <strong style="color: var(--accent);">🔄 STAGE 1: FETCH</strong>
+            <div class="step" style="margin-top: 0.4rem;"><span class="step-num">1</span> <strong>PC → MAR</strong> via address bus (PC holds address of next instruction)</div>
+            <div class="step"><span class="step-num">2</span> <strong>Memory[MAR] → MDR</strong> via data bus (fetch instruction from memory)</div>
+            <div class="step"><span class="step-num">3</span> <strong>MDR → CIR</strong> (move instruction into current instruction register)</div>
+            <div class="step"><span class="step-num">4</span> <strong>PC ← PC + 1</strong> (increment PC to point to next instruction)</div>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <strong style="color: var(--green);">🔍 STAGE 2: DECODE</strong>
+            <div class="step" style="margin-top: 0.4rem;"><span class="step-num">5</span> Control Unit interprets the instruction in the CIR</div>
+            <div class="step"><span class="step-num">6</span> Extract opcode and operand</div>
+          </div>
+          <div>
+            <strong style="color: var(--amber);">⚡ STAGE 3: EXECUTE</strong>
+            <div class="step" style="margin-top: 0.4rem;"><span class="step-num">7</span> Control Unit sends signals to appropriate components</div>
+            <div class="step"><span class="step-num">8</span> Instruction is carried out (e.g., ALU adds, data is stored)</div>
+          </div>
+        </div>
+        <div class="info"><strong>✏️ Past paper:</strong> You may be asked to describe all three stages or trace through a fetch-execute cycle step by step.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s3">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>3. Register Transfer Notation (RTN) <span class="sub">Notation for register changes</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="A notation showing which register transfers to which, and operations performed.">Register Transfer Notation</span> (RTN) is a shorthand to describe fetch-execute steps:</p>
+        <table class="styled-table">
+          <tr><th>Notation</th><th>Meaning</th><th>Example</th></tr>
+          <tr><td><code>[X]</code></td><td>Contents of register X</td><td><code>[PC]</code> = contents of PC</td></tr>
+          <tr><td><code>X ← [Y]</code></td><td>Contents of Y copied to X</td><td><code>MAR ← [PC]</code> (PC copied to MAR)</td></tr>
+          <tr><td><code>[[X]]</code></td><td>Contents of the memory location whose address is in X</td><td><code>MDR ← [[MAR]]</code> (fetch from memory at MAR)</td></tr>
+          <tr><td><code>[X] + 1</code></td><td>Add 1 to contents of X</td><td><code>PC ← [PC] + 1</code> (increment PC)</td></tr>
+        </table>
+        <div class="formula">
+Fetch-Execute Cycle in RTN:
+MAR ← [PC]           ← PC → MAR (address bus)
+MDR ← [[MAR]]        ← Memory address sent, instruction fetched
+CIR ← [MDR]          ← Instruction moved to CIR
+PC ← [PC] + 1        ← PC incremented
+(Decode and Execute follow)
+        </div>
+        <div class="pp-block">
+          <span class="pp-link">Frequent Paper 1 Q</span>
+          <q>Describe in RTN the steps to fetch an instruction. [4]</q>
+          <details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content">
+MAR ← [PC] (address of next instruction)
+MDR ← [[MAR]] (fetch instruction from memory)
+CIR ← [MDR] (instruction moved to CIR)
+PC ← [PC] + 1 (increment PC)
+          </div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s4">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>4. Interrupts <span class="sub">Priority, ISR, context switching</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="A signal sent to the CPU by a device or software requesting immediate attention.">An interrupt</span> is a signal that pauses the current program and requests the CPU's attention.</p>
+        <p><strong>Sources of interrupts:</strong> hardware (I/O device ready, timer, error) or software (illegal instruction, divide-by-zero).</p>
+        <p><span class="kw" data-def="A priority level determines which interrupt is serviced first if multiple occur.">Priority</span> determines the order interrupts are serviced. Higher-priority interrupts may interrupt lower-priority ones.</p>
+        <div class="worked">
+          <div class="step"><span class="step-num">1</span> During fetch-execute, the interrupt register is checked</div>
+          <div class="step"><span class="step-num">2</span> If an interrupt is set, the CPU checks its priority</div>
+          <div class="step"><span class="step-num">3</span> CPU stores the current state (PC, registers, status) — <strong>context save</strong></div>
+          <div class="step"><span class="step-num">4</span> Jump to the <span class="kw" data-def="Code that handles/services an interrupt.">Interrupt Service Routine (ISR)</span></div>
+          <div class="step"><span class="step-num">5</span> ISR executes</div>
+          <div class="step"><span class="step-num">6</span> Restore saved context — <strong>context restore</strong></div>
+          <div class="step"><span class="step-num">7</span> Return to original program</div>
+        </div>
+        <div class="tip"><strong>📌 Exam tip:</strong> Interrupts enable multi-tasking and allow I/O operations without wasting CPU time. Context save/restore is essential to resume the original program correctly.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s5">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>5. Assembly language basics <span class="sub">Opcode, operand, mnemonics</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Low-level programming language using human-readable mnemonics.">Assembly language</span> uses <span class="kw" data-def="A mnemonic abbreviation for the operation to perform.">mnemonics</span> instead of raw binary machine code.</p>
+        <p>Each instruction has an <span class="kw" data-def="The part of an instruction that specifies the operation.">opcode</span> (operation) and an optional <span class="kw" data-def="The part of an instruction that specifies the data or address.">operand</span> (data or address).</p>
+        <div class="formula">
+Instruction format:
+[Label:] OPCODE OPERAND
+
+Example:
+loop: ADD total      ← Label points here; ADD is opcode; total is operand
+        </div>
+        <table class="styled-table">
+          <tr><th>Instruction</th><th>Opcode</th><th>Operand</th><th>Example</th></tr>
+          <tr><td>Load Immediate</td><td>LDM</td><td>#value</td><td><code>LDM #25</code> (store 25 in ACC)</td></tr>
+          <tr><td>Load Direct</td><td>LDD</td><td>address</td><td><code>LDD 200</code> (load from address 200)</td></tr>
+          <tr><td>Store</td><td>STO</td><td>address</td><td><code>STO 200</code> (store ACC at address 200)</td></tr>
+          <tr><td>Add</td><td>ADD</td><td>address</td><td><code>ADD 200</code> (add value at address 200 to ACC)</td></tr>
+          <tr><td>Subtract</td><td>SUB</td><td>address</td><td><code>SUB 200</code> (subtract address 200 from ACC)</td></tr>
+          <tr><td>Increment</td><td>INC</td><td>register</td><td><code>INC ACC</code> (add 1 to ACC)</td></tr>
+          <tr><td>Decrement</td><td>DEC</td><td>register</td><td><code>DEC IX</code> (subtract 1 from IX)</td></tr>
+          <tr><td>Jump</td><td>JMP</td><td>address/label</td><td><code>JMP loop</code> (jump to label)</td></tr>
+          <tr><td>Compare</td><td>CMP</td><td>address/#value</td><td><code>CMP #10</code> (compare ACC with 10)</td></tr>
+          <tr><td>Jump if Equal</td><td>JPE</td><td>address/label</td><td><code>JPE done</code> (jump if equal)</td></tr>
+          <tr><td>Jump if Not Equal</td><td>JPN</td><td>address/label</td><td><code>JPN loop</code> (jump if not equal)</td></tr>
+          <tr><td>End</td><td>END</td><td>—</td><td><code>END</code> (return to OS)</td></tr>
+        </table>
+        <div class="info"><strong>✏️ Note:</strong> A <span class="kw" data-def="An identifier in assembly code that marks a location for jumping to.">label</span> marks a location in the program so you can jump to it. Labels end with <strong>:</strong> and are used with jump instructions.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s6">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>6. Instruction types <span class="sub">Load, Store, Arithmetic, Compare, Jump</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>Assembly language instructions are grouped by function:</p>
+        <div style="margin-top: 1rem;">
+          <strong style="display: block; margin-bottom: 0.5rem; color: var(--accent);">📥 Data movement instructions:</strong>
+          <ul>
+            <li><code>LDM #value</code> — Load immediate (load a constant)</li>
+            <li><code>LDD address</code> — Load direct (fetch from memory)</li>
+            <li><code>LDI address</code> — Load indirect (fetch via pointer)</li>
+            <li><code>LDX address</code> — Load indexed (fetch with offset)</li>
+            <li><code>STO address</code> — Store ACC at address</li>
+          </ul>
+        </div>
+        <div style="margin-top: 1rem;">
+          <strong style="display: block; margin-bottom: 0.5rem; color: var(--green);">➕ Arithmetic instructions:</strong>
+          <ul>
+            <li><code>ADD address</code> or <code>ADD #n</code> — Add to ACC</li>
+            <li><code>SUB address</code> or <code>SUB #n</code> — Subtract from ACC</li>
+            <li><code>INC register</code> — Increment (ACC or IX)</li>
+            <li><code>DEC register</code> — Decrement (ACC or IX)</li>
+          </ul>
+        </div>
+        <div style="margin-top: 1rem;">
+          <strong style="display: block; margin-bottom: 0.5rem; color: var(--amber);">🔀 Control/comparison instructions:</strong>
+          <ul>
+            <li><code>CMP address</code> or <code>CMP #n</code> — Compare ACC with value (sets flags)</li>
+            <li><code>CMI address</code> — Compare indirect</li>
+            <li><code>JMP address</code> — Unconditional jump</li>
+            <li><code>JPE address</code> — Jump if equal (after compare)</li>
+            <li><code>JPN address</code> — Jump if not equal (after compare)</li>
+            <li><code>END</code> — End program</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s7">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>7. Addressing modes <span class="sub">Immediate, Direct, Indirect, Indexed, Relative</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="The method used to specify where to fetch operands from.">Addressing modes</span> determine where the CPU fetches data from:</p>
+        <table class="styled-table">
+          <tr><th>Mode</th><th>Syntax</th><th>What it does</th><th>Example</th></tr>
+          <tr><td><strong>Immediate</strong></td><td><code>#value</code></td><td>Use the value directly (no memory access)</td><td><code>LDM #200</code> → ACC = 200</td></tr>
+          <tr><td><strong>Direct/Absolute</strong></td><td><code>address</code></td><td>Fetch from the specified memory address</td><td><code>LDD 200</code> → ACC = [memory 200]</td></tr>
+          <tr><td><strong>Indirect</strong></td><td><code>address</code> with LDI</td><td>Address contains another address (pointer). Fetch from that location.</td><td>Memory[200]=20, Memory[20]=5; <code>LDI 200</code> → ACC = 5</td></tr>
+          <tr><td><strong>Indexed</strong></td><td><code>address</code> with LDX</td><td>Address + Index Register value = final address</td><td>IX=4, Memory[204]=17; <code>LDX 200</code> → ACC = 17</td></tr>
+          <tr><td><strong>Relative</strong></td><td><code>#offset</code> with JMR</td><td>PC + offset = jump address</td><td><code>JMR #5</code> → jump 5 locations forward</td></tr>
+        </table>
+        <div class="worked">
+          <strong>📚 Full example:</strong>
+          <div class="step" style="margin: 0.5rem 0;"><span class="step-num">Scenario:</span> Memory[200]=20, Memory[20]=5, IX=4</div>
+          <div class="step"><code>LDM #200</code> → ACC = 200 (immediate)</div>
+          <div class="step"><code>LDD 200</code> → ACC = 20 (direct: fetch from address 200)</div>
+          <div class="step"><code>LDI 200</code> → ACC = 5 (indirect: address 200 contains 20, so fetch from address 20)</div>
+          <div class="step"><code>LDX 200</code> → ACC = ? (indexed: fetch from 200+4=204)</div>
+        </div>
+        <div class="pp-block">
+          <span class="pp-link">Frequent Paper 1 Q</span>
+          <q>Memory[200]=300, Memory[300]=50. State the contents of ACC after: (i) LDM #200 (ii) LDD 200 (iii) LDI 200</q>
+          <details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content">(i) <strong>200</strong> (immediate); (ii) <strong>300</strong> (direct: value at 200); (iii) <strong>50</strong> (indirect: 200→300→50)</div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s8">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>8. Trace tables &amp; assembly programs <span class="sub">Symbol table, execution tracing</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>A <span class="kw" data-def="Maps labels and variables to their memory addresses.">symbol table</span> records the memory address of each label and variable. A <span class="kw" data-def="Shows the state of registers after each instruction.">trace table</span> shows how registers change as the program executes.</p>
+        <div class="info"><strong>Example program:</strong></div>
+        <div class="formula" style="font-size: 0.9rem;">
+loop:   LDX number        (load from array using index)
+        ADD total         (add to total)
+        STO total         (store result)
+        INC IX            (increment index)
+        CMP #3            (compare index with 3)
+        JPN loop          (jump back if not equal)
+        END
+number: 5, 7, 3           (array)
+total:  0                 (accumulator)
+        </div>
+        <strong>Symbol Table (assume program starts at 100):</strong>
+        <table class="styled-table" style="font-size: 0.85rem;">
+          <tr><th>Label</th><th>Address</th></tr>
+          <tr><td>loop</td><td>100</td></tr>
+          <tr><td>number</td><td>107</td></tr>
+          <tr><td>total</td><td>110</td></tr>
+        </table>
+        <strong style="display: block; margin-top: 1rem;">Trace Table (first 2 iterations):</strong>
+        <table class="styled-table" style="font-size: 0.8rem;">
+          <tr><th>PC</th><th>Instruction</th><th>ACC</th><th>IX</th><th>Total</th></tr>
+          <tr><td>100</td><td>LDX 107</td><td>5</td><td>0</td><td>0</td></tr>
+          <tr><td>101</td><td>ADD 110</td><td>5</td><td>0</td><td>0</td></tr>
+          <tr><td>102</td><td>STO 110</td><td>5</td><td>0</td><td>5</td></tr>
+          <tr><td>103</td><td>INC IX</td><td>5</td><td>1</td><td>5</td></tr>
+          <tr><td>104</td><td>CMP #3</td><td>5</td><td>1</td><td>5</td></tr>
+          <tr><td>105</td><td>JPN 100</td><td>5</td><td>1</td><td>5</td></tr>
+          <tr><td>100</td><td>LDX 107</td><td>7</td><td>1</td><td>5</td></tr>
+          <tr><td>101</td><td>ADD 110</td><td>12</td><td>1</td><td>5</td></tr>
+          <tr><td>102</td><td>STO 110</td><td>12</td><td>1</td><td>12</td></tr>
+        </table>
+        <div class="pp-block">
+          <span class="pp-link">Frequent Paper 1 Q</span>
+          <q>Complete the trace table for this assembly program. State what the program does. [6]</q>
+          <details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content">Trace table should show PC, instruction, and register changes for each step. Program: sums an array of 3 numbers using indexed addressing and a loop.</div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="section open" id="pp" style="border-color:var(--amber);">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3 style="color:var(--amber);">📝 Past paper questions — Unit 4</h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="pp-block"><span class="pp-link">Q1</span><q>Describe the purpose of the Program Counter (PC). [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Stores the memory address of the next instruction to be fetched.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q2</span><q>State the difference between the address bus and data bus. [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Address bus is unidirectional (CPU → Memory); carries memory addresses. Data bus is bidirectional; carries data, instructions, or addresses.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q3</span><q>Describe the fetch stage of the fetch-execute cycle in RTN. [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">MAR ← [PC]; MDR ← [[MAR]]; CIR ← [MDR]; PC ← [PC] + 1</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q4</span><q>Explain what happens during a context save when an interrupt occurs. [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">The current state of the CPU (PC, registers, status) is stored in memory so the program can resume later.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q5</span><q>Memory[200]=300, Memory[300]=50. State ACC after: (i) LDM #200 (ii) LDD 200 (iii) LDI 200 [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">(i) 200 (immediate); (ii) 300 (direct); (iii) 50 (indirect: 200→300→50)</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q6</span><q>Write an assembly instruction to: (i) compare ACC with 5 (ii) jump to address 100 if equal [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">(i) CMP #5; (ii) JPE 100</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q7</span><q>Complete a trace table for this program and state what it calculates. [7]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Trace table with PC, instruction, ACC, registers. State: adds/multiplies values, counts loops, etc.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q8</span><q>Explain indexed addressing mode with an example. [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Final address = address in operand + contents of index register. Allows array access by incrementing IX.</div></details></div>
+      </div>
+    </div>
+
+    <div class="glossary" id="glossary">
+      <h2>★ Keywords glossary — Unit 4</h2>
+      <div class="glossary-grid">
+        <div class="glossary-item"><div class="g-term">CPU</div><div class="g-def">Central Processing Unit — executes instructions.</div></div>
+        <div class="glossary-item"><div class="g-term">Register</div><div class="g-def">Fast temporary storage in the CPU.</div></div>
+        <div class="glossary-item"><div class="g-term">PC</div><div class="g-def">Program Counter — address of next instruction.</div></div>
+        <div class="glossary-item"><div class="g-term">MAR</div><div class="g-def">Memory Address Register — holds address before access.</div></div>
+        <div class="glossary-item"><div class="g-term">MDR</div><div class="g-def">Memory Data Register — holds fetched data/instruction.</div></div>
+        <div class="glossary-item"><div class="g-term">CIR</div><div class="g-def">Current Instruction Register — instruction being executed.</div></div>
+        <div class="glossary-item"><div class="g-term">ACC</div><div class="g-def">Accumulator — main working register.</div></div>
+        <div class="glossary-item"><div class="g-term">IX</div><div class="g-def">Index Register — used in indexed addressing.</div></div>
+        <div class="glossary-item"><div class="g-term">SR</div><div class="g-def">Status Register — holds flags (Z, C, N, V).</div></div>
+        <div class="glossary-item"><div class="g-term">Address bus</div><div class="g-def">Unidirectional; carries memory addresses.</div></div>
+        <div class="glossary-item"><div class="g-term">Data bus</div><div class="g-def">Bidirectional; carries data, instructions, addresses.</div></div>
+        <div class="glossary-item"><div class="g-term">Control bus</div><div class="g-def">Bidirectional; carries control signals.</div></div>
+        <div class="glossary-item"><div class="g-term">Fetch-execute cycle</div><div class="g-def">Fetch, decode, execute repeated for each instruction.</div></div>
+        <div class="glossary-item"><div class="g-term">Interrupt</div><div class="g-def">Signal requesting CPU attention.</div></div>
+        <div class="glossary-item"><div class="g-term">ISR</div><div class="g-def">Interrupt Service Routine — code that handles interrupt.</div></div>
+        <div class="glossary-item"><div class="g-term">Context save</div><div class="g-def">Store CPU state before interrupt.</div></div>
+        <div class="glossary-item"><div class="g-term">Assembly language</div><div class="g-def">Low-level language using mnemonics.</div></div>
+        <div class="glossary-item"><div class="g-term">Opcode</div><div class="g-def">Part of instruction specifying operation.</div></div>
+        <div class="glossary-item"><div class="g-term">Operand</div><div class="g-def">Part of instruction specifying data/address.</div></div>
+        <div class="glossary-item"><div class="g-term">Label</div><div class="g-def">Mark in code for jumping to.</div></div>
+        <div class="glossary-item"><div class="g-term">Addressing mode</div><div class="g-def">Method to specify where to fetch operands.</div></div>
+        <div class="glossary-item"><div class="g-term">Immediate addressing</div><div class="g-def">Use value directly; syntax #value.</div></div>
+        <div class="glossary-item"><div class="g-term">Direct addressing</div><div class="g-def">Fetch from specified memory address.</div></div>
+        <div class="glossary-item"><div class="g-term">Indirect addressing</div><div class="g-def">Address contains another address.</div></div>
+        <div class="glossary-item"><div class="g-term">Indexed addressing</div><div class="g-def">Address + Index Register = final address.</div></div>
+        <div class="glossary-item"><div class="g-term">Register Transfer Notation</div><div class="g-def">Notation showing register changes (RTN).</div></div>
+        <div class="glossary-item"><div class="g-term">Symbol table</div><div class="g-def">Maps labels and variables to addresses.</div></div>
+        <div class="glossary-item"><div class="g-term">Trace table</div><div class="g-def">Shows register state after each instruction.</div></div>
+      </div>
+    </div>
+
+    <footer>CS 9618 · Unit 4: Processor Fundamentals · Syllabus 2026 · Sources: Cambridge 9618 spec, Hodder textbook, past papers &amp; mark schemes (2021–2026)</footer>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
