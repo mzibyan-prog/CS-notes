@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Unit 8 — Databases</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <div class="sidebar-logo">📘 CS 9618</div>
+    <div class="sidebar-sub">Paper 1 · Theory Fundamentals</div>
+  </div>
+  <nav class="unit-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="unit1.html">Unit 1 · Information Representation</a>
+    <a href="unit2.html">Unit 2 · Communication</a>
+    <a href="unit3.html">Unit 3 · Hardware</a>
+    <a href="unit4.html">Unit 4 · Processor Fundamentals</a>
+    <a href="unit5.html">Unit 5 · System Software</a>
+    <a href="unit6.html">Unit 6 · Security &amp; Integrity</a>
+    <a href="unit7.html">Unit 7 · Ethics & Ownership</a>
+    <a href="unit8.html" class="active">Unit 8 · Databases</a>
+  </nav>
+  <div class="sidebar-foot">Syllabus 2026 · AS Level</div>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<div class="content">
+  <div class="topbar">
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
+    <h1>Unit 8 — Databases</h1>
+    <span class="badge">Paper 1</span>
+  </div>
+
+  <div class="toc">
+    <h2>📑 Topics in this unit</h2>
+    <div class="toc-grid">
+      <a href="#s1"><span class="num">1</span> Database Concepts</a>
+      <a href="#s2"><span class="num">2</span> Database Models</a>
+      <a href="#s3"><span class="num">3</span> Relational Databases</a>
+      <a href="#s4"><span class="num">4</span> SQL &amp; Queries</a>
+      <a href="#s5"><span class="num">5</span> Database Design</a>
+      <a href="#s6"><span class="num">6</span> Normalisation</a>
+      <a href="#s7"><span class="num">7</span> Data Management Systems</a>
+      <a href="#glossary"><span class="num">★</span> Glossary</a>
+      <a href="#pp"><span class="num">📝</span> Past papers</a>
+    </div>
+  </div>
+
+  <main>
+
+    <div class="section open" id="s1">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>1. Database Concepts <span class="sub">DBMS · Data Integrity · Data Models</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>A <span class="kw" data-def="Software used to create, manage, and manipulate databases.">Database Management System (DBMS)</span> allows users to define, create, maintain and control access to the database.</p>
+        <p>Key concepts:</p>
+        <table class="styled-table">
+          <tr><th>Concept</th><th>Description</th></tr>
+          <tr><td><span class="kw" data-def="An abstraction that organizes data in a structured way.">Data Model</span></td><td>Defines the logical structure of a database (e.g., relational model)</td></tr>
+          <tr><td><span class="kw" data-def="Measures to ensure consistency and correctness of data.">Data Integrity</span></td><td>Ensures accuracy and consistency of data stored in the database</td></tr>
+          <tr><td><span class="kw" data-def="The process of storing data into predefined structures.">Data Storage</span></td><td>How data is organized in files and tables within a DBMS</td></tr>
+          <tr><td><span class="kw" data-def="The collection of related data structured to serve various applications.">Database</span></td><td>Organized collection of data that can be easily accessed, managed, and updated</td></tr>
+        </table>
+        <div class="info"><strong>📌 Exam tip:</strong> Be prepared to explain the role of a DBMS and the importance of data integrity in outcomes based on user inputs.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s2">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>2. Database Models <span class="sub">Hierarchical · Network · Relational · Object-oriented</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>Different <span class="kw" data-def="Structure of a database that defines how data is organized.">database models</span> determine how data is stored and accessed:</p>
+        <table class="styled-table">
+          <tr><th>Model</th><th>Description</th><th>Example</th></tr>
+          <tr><td><span class="kw" data-def="Data is organized in a tree-like structure.">Hierarchical</span></td><td>Uses parent-child relationships in a single tree structure</td><td>XML data</td></tr>
+          <tr><td><span class="kw" data-def="Data represented by nodes and connections.">Network</span></td><td>Allows more complex relationships with many-to-many links</td><td>Older database applications (e.g., Integrated Data Store)</td></tr>
+          <tr><td><span class="kw" data-def="Data is organized in tables with relationships.">Relational</span></td><td>Represents data in tables; enables logical relationships</td><td>MySQL, PostgreSQL</td></tr>
+          <tr><td><span class="kw" data-def="Data is stored as objects, similar to object-oriented programming.">Object-oriented</span></td><td>Stores data as objects, encapsulating both data and behavior</td><td>db4o, ObjectDB</td></tr>
+        </table>
+        <div class="worked"><strong>Why relational model is dominant:</strong> It simplifies database design and management with SQL (Structured Query Language) universally accepted for interfacing.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s3">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>3. Relational Databases <span class="sub">Tables · Keys · Relationships</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>In a <span class="kw" data-def="A collection of data organized in structured tables.">relational database</span>, data is represented in tables (relations) that contain rows (records) and columns (attributes).</p>
+        <table class="styled-table">
+          <tr><th>Term</th><th>Description</th></tr>
+          <tr><td><span class="kw" data-def="A unique identifier for each record in a table.">Primary Key</span></td><td>Uniquely identifies a record in a table</td></tr>
+          <tr><td><span class="kw" data-def="A field in one table that links to the Primary Key field of another table.">Foreign Key</span></td><td>A reference to a primary key in another table, creating a link between them</td></tr>
+          <tr><td><span class="kw" data-def="The relationship between tables to allow data retrieval.">Relationship</span></td><td>Defines how data in different tables are related (one-to-one, one-to-many, many-to-many)</td></tr>
+        </table>
+        <div class="info"><strong>📌 Exam tip:</strong> You might be asked to explain how primary and foreign keys enforce referential integrity in relational databases.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s4">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>4. SQL &amp; Queries <span class="sub">SELECT · INSERT · UPDATE · DELETE</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Structured Query Language used for manipulating databases.">SQL</span> is the standard language used to communicate with relational databases. Key SQL statements:</p>
+        <table class="styled-table">
+          <tr><th>Statement</th><th>Description</th></tr>
+          <tr><td><code>SELECT</code></td><td>Retrieves data from one or more tables</td></tr>
+          <tr><td><code>INSERT</code></td><td>Adds new data/records into a table</td></tr>
+          <tr><td><code>UPDATE</code></td><td>Modifies existing data within a table</td></tr>
+          <tr><td><code>DELETE</code></td><td>Removes data/records from a table</td></tr>
+        </table>
+        <div class="worked"><strong>Example SELECT statement:</strong> 
+<code>SELECT * FROM Students WHERE Age > 18;</code> 
+Retrieves all columns from the 'Students' table where 'Age' is greater than 18.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s5">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>5. Database Design <span class="sub">Normalization · ER Diagrams</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>Effective <span class="kw" data-def="The process of planning a database structure.">database design</span> ensures data integrity and efficiency. It includes concepts like:</p>
+        <table class="styled-table">
+          <tr><th>Concept</th><th>Description</th></tr>
+          <tr><td><span class="kw" data-def="Organizing a database to reduce redundancy and dependency.">Normalization</span></td><td>Process of structuring tables to minimize redundancy (e.g., converting to 1NF, 2NF, 3NF)</td></tr>
+          <tr><td><span class="kw" data-def="Graphical representation of entities and relationships in a database.">ER Diagrams</span></td><td>Visual tool to map out entities, relationships, and attributes in a database</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="section" id="s6">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>6. Normalization <span class="sub">1NF · 2NF · 3NF</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>Normalization ensures that the database is logically organized. It includes:</p>
+        <table class="styled-table">
+          <tr><th>Form</th><th>Basic Definition</th></tr>
+          <tr><td><strong>1NF (First Normal Form)</strong></td><td>No repeating groups; all attributes contain atomic values</td></tr>
+          <tr><td><strong>2NF (Second Normal Form)</strong></td><td>All non-key attributes are fully functionally dependent on the primary key</td></tr>
+          <tr><td><strong>3NF (Third Normal Form)</strong></td><td>No transitive functional dependencies; all attributes are directly dependent on the primary key</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="section open" id="pp" style="border-color:var(--amber);">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3 style="color:var(--amber);">📝 Past paper questions — Unit 8</h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="pp-block"><span class="pp-link">Q1</span><q>What is a DBMS, and what are its main functions? [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">A DBMS is software that manages databases; functions include data definition, data manipulation, data retrieval, and data integrity.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q2</span><q>Compare hierarchical and relational database models. [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Hierarchical: tree-like structure with parent-child relationships; Relational: data in tables with relationships using keys.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q3</span><q>Explain the purpose of primary keys and foreign keys in relational databases. [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Primary key uniquely identifies records in a table; foreign key links to primary key in another table, establishing relationships.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q4</span><q>What are the main components of an SQL statement? [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Components include the action (e.g., SELECT), the target table (e.g., FROM table_name) and conditions (e.g., WHERE condition).</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q5</span><q>Describe the two types of normalization: 1NF and 2NF. [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">1NF requires no repeating groups and atomic values; 2NF removes partial dependency by ensuring all non-key attributes depend on the whole key.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q6</span><q>What is the purpose of ER diagrams in database design? [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">To visually represent entities, their relationships, and attributes, helping in understanding database structure.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q7</span><q>What is the difference between a relational model and a network model? [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Relational model uses tables and relationships; network model uses nodes and more complex relationships, allowing many-to-many links.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q8</span><q>Explain a scenario where using a natural language interface to a DBMS would help users. [2]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">Allows non-technical users to query the database in plain language, enhancing accessibility for those unfamiliar with SQL or complex queries.</div></details></div>
+      </div>
+    </div>
+
+    <div class="glossary" id="glossary">
+      <h2>★ Keywords glossary — Unit 8</h2>
+      <div class="glossary-grid">
+        <div class="glossary-item"><div class="g-term">DBMS</div><div class="g-def">Database Management System; manages databases.</div></div>
+        <div class="glossary-item"><div class="g-term">Data Integrity</div><div class="g-def">Accuracy and consistency of data.</div></div>
+        <div class="glossary-item"><div class="g-term">Data Model</div><div class="g-def">Structure that defines how data is organized.</div></div>
+        <div class="glossary-item"><div class="g-term">Primary Key</div><div class="g-def">Unique identifier for each record in a table.</div></div>
+        <div class="glossary-item"><div class="g-term">Foreign Key</div><div class="g-def">Reference to a primary key in another table.</div></div>
+        <div class="glossary-item"><div class="g-term">Relational Database</div><div class="g-def">Data organized in tables with relationships between them.</div></div>
+        <div class="glossary-item"><div class="g-term">SQL</div><div class="g-def">Structured Query Language for querying databases.</div></div>
+        <div class="glossary-item"><div class="g-term">Normalization</div><div class="g-def">Process of organizing data to reduce redundancy.</div></div>
+        <div class="glossary-item"><div class="g-term">ER Diagram</div><div class="g-def">Entity-Relationship Diagram; visual representation of entities and relationships.</div></div>
+        <div class="glossary-item"><div class="g-term">1NF</div><div class="g-def">First Normal Form; no repeating groups in a table.</div></div>
+        <div class="glossary-item"><div class="g-term">2NF</div><div class="g-def">Second Normal Form; no partial dependencies on primary keys.</div></div>
+      </div>
+    </div>
+
+    <footer>CS 9618 · Unit 8: Databases · Syllabus 2026 · Sources: Cambridge 9618 spec, Hodder textbook, past papers &amp; mark schemes (2021–2026)</footer>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
