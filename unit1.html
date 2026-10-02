@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Unit 1 — Information Representation</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <div class="sidebar-logo">📘 CS 9618</div>
+    <div class="sidebar-sub">Paper 1 · Theory Fundamentals</div>
+  </div>
+  <nav class="unit-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="unit1.html" class="active">Unit 1 · Information Representation</a>
+    <a href="unit2.html">Unit 2 · Communication</a>
+    <a class="soon">Unit 3 · Hardware 🔒</a>
+    <a class="soon">Unit 4 · Processor Fundamentals 🔒</a>
+    <a class="soon">Unit 5 · System Software 🔒</a>
+    <a class="soon">Unit 6 · Security &amp; Integrity 🔒</a>
+    <a class="soon">Unit 7 · Ethics &amp; Ownership 🔒</a>
+    <a class="soon">Unit 8 · Databases 🔒</a>
+  </nav>
+  <div class="sidebar-foot">Syllabus 2026 · AS Level</div>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<div class="content">
+  <div class="topbar">
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
+    <h1>Unit 1 — Information Representation</h1>
+    <span class="badge">Paper 1</span>
+  </div>
+
+  <div class="toc">
+    <h2>📑 Topics in this unit</h2>
+    <div class="toc-grid">
+      <a href="#s1"><span class="num">1</span> Number systems</a>
+      <a href="#s2"><span class="num">2</span> Binary addition &amp; subtraction</a>
+      <a href="#s3"><span class="num">3</span> Two's complement &amp; BCD</a>
+      <a href="#s4"><span class="num">4</span> Binary prefixes</a>
+      <a href="#s5"><span class="num">5</span> Character sets</a>
+      <a href="#s6"><span class="num">6</span> Bitmap images</a>
+      <a href="#s7"><span class="num">7</span> Vector graphics</a>
+      <a href="#s8"><span class="num">8</span> Sound representation</a>
+      <a href="#s9"><span class="num">9</span> File compression</a>
+      <a href="#s10"><span class="num">10</span> RLE compression</a>
+      <a href="#glossary"><span class="num">★</span> Glossary</a>
+      <a href="#pp"><span class="num">📝</span> Past papers</a>
+    </div>
+  </div>
+
+  <main>
+
+    <div class="section open" id="s1">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>1. Number systems <span class="sub">Binary · Denary · Hexadecimal</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>A <span class="kw" data-def="Base 2: digits 0 or 1. Column values are powers of 2.">binary</span> (base‑2) system uses only <strong>0</strong> and <strong>1</strong>. Each position has a weighting that is a power of 2.</p>
+        <div class="diagram">
+          <div class="diagram-title">8-bit binary column weightings</div>
+          <div class="diagram-flex">
+            <div class="bit-box"><div class="bit">0</div><div class="bit-weight">128</div></div>
+            <div class="bit-box"><div class="bit">1</div><div class="bit-weight">64</div></div>
+            <div class="bit-box"><div class="bit">1</div><div class="bit-weight">32</div></div>
+            <div class="bit-box"><div class="bit">0</div><div class="bit-weight">16</div></div>
+            <div class="bit-box"><div class="bit">1</div><div class="bit-weight">8</div></div>
+            <div class="bit-box"><div class="bit">1</div><div class="bit-weight">4</div></div>
+            <div class="bit-box"><div class="bit">0</div><div class="bit-weight">2</div></div>
+            <div class="bit-box"><div class="bit">1</div><div class="bit-weight">1</div></div>
+          </div>
+          <p style="text-align:center;margin-top:.5rem;font-size:.85rem;color:var(--text2);">0110 1101₂ = 64+32+8+4+1 = <strong>109₁₀</strong></p>
+        </div>
+        <div class="formula">Binary → Denary: multiply each bit by its column weighting and sum.</div>
+        <p><span class="kw" data-def="Base 16: digits 0–9 and A–F. One hex digit = 4 bits.">Hexadecimal</span> (base‑16) uses <strong>0–9</strong> and <strong>A–F</strong> (A=10 … F=15).</p>
+        <p><strong>Binary → Hex:</strong> split into groups of 4 bits from the right, pad the leftmost group with 0s, convert each 4-bit group to its hex digit.</p>
+        <div class="worked">
+          <div class="step"><span class="step-num">1</span> 1011 1110 0001₂ → 1011 | 1110 | 0001</div>
+          <div class="step"><span class="step-num">2</span> Convert → B | E | 1</div>
+          <div class="step"><span class="step-num">3</span> Result: <strong>BE1₁₆</strong></div>
+        </div>
+        <div class="tip"><strong>📌 Exam tip:</strong> No calculators on Paper 1. Hex shortens long binary strings (memory addresses, colour codes).</div>
+      </div>
+    </div>
+
+    <div class="section" id="s2">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>2. Binary addition &amp; subtraction <span class="sub">Carry · Overflow · Two's complement method</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><strong>Addition rules:</strong> 0+0=0, 0+1=1, 1+0=1, 1+1=0 carry 1.</p>
+        <p><span class="kw" data-def="Occurs when the result exceeds the available bit-width.">Overflow</span> occurs when the sum needs more bits than available. In 8-bit: max 255 (unsigned) / 127 (signed). The extra carry bit is discarded.</p>
+        <p><strong>Subtraction</strong> uses <span class="kw" data-def="Invert all bits then add 1. Lets subtraction be done by adding the negative.">two's complement</span>:</p>
+        <div class="worked">
+          <div class="step"><span class="step-num">1</span> Convert the number to subtract to binary</div>
+          <div class="step"><span class="step-num">2</span> Find its two's complement (invert bits → add 1)</div>
+          <div class="step"><span class="step-num">3</span> Add the two numbers, discard the final carry</div>
+          <p style="margin-top:.5rem;"><em>95 − 68 → 0101 1111 + 1011 1100 = 1 0001 1011 → discard → <strong>0001 1011 = 27₁₀</strong></em></p>
+        </div>
+        <div class="info"><strong>✏️ Past paper:</strong> Often asked to add/subtract then <em>state the overflow bit</em> or <em>discuss whether overflow occurred</em>.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s3">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>3. Two's complement &amp; BCD <span class="sub">Signed numbers · Binary Coded Decimal</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>In two's complement the MSB represents <strong>−128</strong>. Range (8-bit): <strong>−128 to +127</strong>.</p>
+        <p><span class="kw" data-def="Each denary digit encoded separately as its own 4-bit binary value.">BCD</span> encodes each denary digit independently in 4 bits.</p>
+        <div class="formula">395₁₀ → 0011 | 1001 | 0101&nbsp;&nbsp;(3 | 9 | 5)</div>
+        <div class="tip"><strong>📌 Exam tip:</strong> BCD is used in calculators and digital clocks (exact decimal display, no rounding errors).</div>
+        <div class="pp-block">
+          <span class="pp-link">Frequent Paper 1 Q</span>
+          <q>Write 798 in BCD. Convert BCD 1001 0111 0111 0110 to denary. Give one use of BCD.</q>
+          <details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content"><strong>(a)</strong> 0111 1001 1000 &nbsp;<strong>(b)</strong> 9776 &nbsp;<strong>(c)</strong> Calculators / digital clocks.</div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s4">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>4. Binary prefixes <span class="sub">KiB vs KB · Powers of 2 vs 10</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Prefix based on powers of 2: 1 KiB = 1024 bytes.">Binary prefixes</span> (IEC): 1 KiB = 2¹⁰ = 1024 B. <span class="kw" data-def="Prefix based on powers of 10: 1 KB = 1000 bytes.">Decimal prefixes</span> (SI): 1 KB = 10³ = 1000 B.</p>
+        <table class="styled-table">
+          <tr><th>Binary</th><th>Value</th><th>Decimal</th><th>Value</th></tr>
+          <tr><td>1 KiB</td><td>1024 B</td><td>1 KB</td><td>1000 B</td></tr>
+          <tr><td>1 MiB</td><td>1 048 576 B</td><td>1 MB</td><td>1 000 000 B</td></tr>
+          <tr><td>1 GiB</td><td>1 073 741 824 B</td><td>1 GB</td><td>1 000 000 000 B</td></tr>
+        </table>
+        <div class="worked"><strong>3 KiB</strong> = 3 × 1024 = <strong>3072 bytes</strong> &nbsp;|&nbsp; <strong>2 TB</strong> = 2 × 1000 = <strong>2000 GB</strong></div>
+      </div>
+    </div>
+
+    <div class="section" id="s5">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>5. Character sets <span class="sub">ASCII · Extended ASCII · Unicode</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>A <span class="kw" data-def="Maps characters to unique binary codes.">character set</span> assigns a unique binary code to each character.</p>
+        <table class="styled-table">
+          <tr><th>Set</th><th>Bits</th><th>Capacity</th><th>Notes</th></tr>
+          <tr><td>ASCII</td><td>7</td><td>128</td><td>English letters, digits, punctuation</td></tr>
+          <tr><td>Extended ASCII</td><td>8</td><td>256</td><td>Adds accented characters, symbols</td></tr>
+          <tr><td>Unicode</td><td>8–32</td><td>&gt;1M</td><td>All world scripts, emoji. Preferred multilingual.</td></tr>
+        </table>
+        <p><strong>How text is stored:</strong> each character → unique binary code → stored in sequence.</p>
+      </div>
+    </div>
+
+    <div class="section" id="s6">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>6. Bitmap images <span class="sub">Resolution · Colour depth · File size · Metadata</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p>A <span class="kw" data-def="Image made from a grid of pixels, each storing a binary colour value.">bitmap</span> is a pixel grid. <span class="kw" data-def="The smallest addressable unit of a bitmap.">Pixel</span> = picture element.</p>
+        <div class="formula">File size (bytes) = width × height × colour depth ÷ 8</div>
+        <div class="worked"><strong>Example:</strong> 2048 × 1024, 16-bit → 2048×1024×16 = 33 554 432 bits ÷ 8 = 4 194 304 bytes ÷ 1024 = <strong>4096 KiB</strong></div>
+        <p><span class="kw" data-def="Bits per pixel. More bits = more colours = larger file.">Colour depth</span>: 1-bit→2 colours, 4-bit→16, 8-bit→256, 16-bit→65 536, 24-bit→16.7M.</p>
+        <p><span class="kw" data-def="Width × height in pixels. Higher = more detail = larger file.">Image resolution</span>: increasing it improves quality but increases file size.</p>
+        <p>A <strong>header (metadata)</strong> stores: width, height, colour depth, file format, compression type.</p>
+        <div class="pp-block">
+          <span class="pp-link">Frequent Paper 1 Q</span>
+          <q>Describe the impact of increasing resolution. Calculate the size of a 2048×1024, 16-bit image in KiB.</q>
+          <details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content"><strong>Quality:</strong> more pixels → more detail → higher quality. <strong>Size:</strong> 4096 KiB.</div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s7">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>7. Vector graphics <span class="sub">Mathematical shapes · Scaling</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Image defined by mathematical formulas, not pixels.">Vector graphics</span> store shapes (lines, circles, polygons) as equations with attributes (fill, stroke, position).</p>
+        <table class="styled-table">
+          <tr><th>Feature</th><th>Bitmap</th><th>Vector</th></tr>
+          <tr><td>Storage</td><td>Pixel grid</td><td>Mathematical formulas</td></tr>
+          <tr><td>Scaling</td><td>Pixelates</td><td>Resolution-independent</td></tr>
+          <tr><td>File size</td><td>Increases with resolution</td><td>Smaller for simple graphics</td></tr>
+          <tr><td>Best for</td><td>Photos</td><td>Logos, diagrams, fonts</td></tr>
+        </table>
+        <div class="info"><strong>✏️ Exam:</strong> "Why is vector suitable for a logo?" → scales without losing quality; smaller file; easier to edit shapes.</div>
+      </div>
+    </div>
+
+    <div class="section" id="s8">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>8. Sound representation <span class="sub">Sampling · Rate · Resolution</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Continuous signal varying smoothly over time.">Analogue data</span> (e.g. sound waves) is digitised via <span class="kw" data-def="Measuring amplitude at regular intervals and storing as binary.">sampling</span>.</p>
+        <div class="formula">File size (bytes) = sampling rate × sampling resolution × duration (sec) ÷ 8</div>
+        <p><span class="kw" data-def="Samples per second (Hz). Higher = better quality.">Sampling rate</span> (Hz): number of samples per second.</p>
+        <p><span class="kw" data-def="Bits per sample. Higher = more accurate amplitude.">Sampling resolution</span> (bits): accuracy of each amplitude reading.</p>
+        <table class="styled-table">
+          <tr><th>Increase →</th><th>Quality</th><th>File size</th></tr>
+          <tr><td>Sampling rate ↑</td><td>✅ Higher</td><td>📈 Increases</td></tr>
+          <tr><td>Sampling resolution ↑</td><td>✅ Higher</td><td>📈 Increases</td></tr>
+        </table>
+        <div class="pp-block">
+          <span class="pp-link">Frequent Paper 1 Q</span>
+          <q>Define analogue data. Match: sampling / sampling rate / sampling resolution to descriptions.</q>
+          <details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content"><strong>Analogue:</strong> data that changes continuously. <strong>Sampling:</strong> taking measurements at regular intervals. <strong>Sampling rate:</strong> samples per second. <strong>Sampling resolution:</strong> bits per sample.</div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="s9">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>9. File compression <span class="sub">Lossy · Lossless</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Original data fully recoverable on decompression.">Lossless</span>: all data reconstructed. Used for text, code, spreadsheets. Examples: PNG, FLAC, ZIP.</p>
+        <p><span class="kw" data-def="Some data permanently removed; smaller file but cannot be fully restored.">Lossy</span>: data permanently discarded. Used for photos (JPEG), music (MP3), video (MP4).</p>
+        <table class="styled-table">
+          <tr><th>Lossless</th><th>Lossy</th></tr>
+          <tr><td>Full recovery</td><td>Data permanently lost</td></tr>
+          <tr><td>Larger compressed size</td><td>Much smaller size</td></tr>
+          <tr><td>Text, code, medical images</td><td>Photos, music, streaming</td></tr>
+        </table>
+        <div class="tip"><strong>📌 Exam:</strong> Lossy → web images (faster download, less bandwidth). Lossless → text (must be exact).</div>
+      </div>
+    </div>
+
+    <div class="section" id="s10">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>10. Run-Length Encoding (RLE) <span class="sub">Lossless compression for images</span></h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <p><span class="kw" data-def="Stores consecutive identical values as (value, count) pairs.">RLE</span> identifies repeating identical pixels and stores (colour value, repetition count).</p>
+        <div class="worked"><strong>Original:</strong> 85, 85, 85, 255, 255 (5 values) → <strong>RLE:</strong> (85,3), (255,2) (4 values) — saves space when repeats are common.</div>
+        <div class="pp-block">
+          <span class="pp-link">Frequent Paper 1 Q</span>
+          <q>Explain how RLE compresses images.</q>
+          <details class="ms-reveal"><summary>📋 Show mark scheme</summary><div class="ms-content">Consecutive identical pixels are identified; stores the colour/pattern and the number of times it repeats.</div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="section open" id="pp" style="border-color:var(--amber);">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3 style="color:var(--amber);">📝 Past paper questions — Unit 1</h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="pp-block"><span class="pp-link">Q1</span><q>Define analogue data. Match sampling / sampling rate / sampling resolution. [3]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content"><strong>Analogue:</strong> continuously changing values. <strong>Sampling:</strong> measuring at regular intervals. <strong>Sampling rate:</strong> samples per second. <strong>Sampling resolution:</strong> bits per sample.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q2</span><q>Describe impact of increasing resolution. Calculate size: 2048×1024, 16-bit (KiB). [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content"><strong>Quality:</strong> more pixels → more detail → higher quality. <strong>Size:</strong> 4096 KiB.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q3</span><q>Complete: 3 KiB = ___ B (binary). 2 TB = ___ GB (decimal). [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content">3 KiB = <strong>3072</strong> B. 2 TB = <strong>2000</strong> GB.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q4</span><q>Write 798 in BCD. Convert BCD 1001 0111 0111 0110 to denary. One use of BCD.</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content"><strong>(a)</strong> 0111 1001 1000. <strong>(b)</strong> 9776. <strong>(c)</strong> Calculators / digital clocks.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q5</span><q>File size: 4000×3000, 32-bit (MB). Two reasons for lossy on web images. Explain RLE. [7]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content"><strong>(a)</strong> 48 MB. <strong>(b)</strong> faster upload/download; less bandwidth. <strong>(c)</strong> consecutive identical pixels → colour + count.</div></details></div>
+        <div class="pp-block"><span class="pp-link">Q6</span><q>Explain lossless compression for images and sound. [4]</q><details class="ms-reveal"><summary>📋 Show MS</summary><div class="ms-content"><strong>Images (RLE):</strong> consecutive identical pixels → colour + count. <strong>Sound:</strong> remove silence / predictive coding / store differences.</div></details></div>
+      </div>
+    </div>
+
+    <div class="glossary" id="glossary">
+      <h2>★ Keywords glossary — Unit 1</h2>
+      <div class="glossary-grid">
+        <div class="glossary-item"><div class="g-term">Binary</div><div class="g-def">Base-2 using digits 0 and 1.</div></div>
+        <div class="glossary-item"><div class="g-term">Bit</div><div class="g-def">Binary digit — smallest data unit.</div></div>
+        <div class="glossary-item"><div class="g-term">Hexadecimal</div><div class="g-def">Base-16, digits 0–9 and A–F. 1 hex = 4 bits.</div></div>
+        <div class="glossary-item"><div class="g-term">Two's complement</div><div class="g-def">Signed integers: invert + add 1. MSB = −128.</div></div>
+        <div class="glossary-item"><div class="g-term">BCD</div><div class="g-def">Each denary digit encoded as 4-bit binary.</div></div>
+        <div class="glossary-item"><div class="g-term">Overflow</div><div class="g-def">Result too large for the bit-width.</div></div>
+        <div class="glossary-item"><div class="g-term">Character set</div><div class="g-def">Maps characters to unique binary codes.</div></div>
+        <div class="glossary-item"><div class="g-term">ASCII</div><div class="g-def">7-bit set, 128 characters.</div></div>
+        <div class="glossary-item"><div class="g-term">Unicode</div><div class="g-def">Character set for all world scripts (8–32 bits).</div></div>
+        <div class="glossary-item"><div class="g-term">Pixel</div><div class="g-def">Smallest unit of a bitmap image.</div></div>
+        <div class="glossary-item"><div class="g-term">Colour depth</div><div class="g-def">Bits per pixel.</div></div>
+        <div class="glossary-item"><div class="g-term">Image resolution</div><div class="g-def">Pixel dimensions (width × height).</div></div>
+        <div class="glossary-item"><div class="g-term">Vector graphic</div><div class="g-def">Mathematical formula-based image.</div></div>
+        <div class="glossary-item"><div class="g-term">Analogue data</div><div class="g-def">Continuously varying signals.</div></div>
+        <div class="glossary-item"><div class="g-term">Sampling</div><div class="g-def">Measuring amplitude at regular intervals.</div></div>
+        <div class="glossary-item"><div class="g-term">Sampling rate</div><div class="g-def">Samples per second (Hz).</div></div>
+        <div class="glossary-item"><div class="g-term">Sampling resolution</div><div class="g-def">Bits per sample.</div></div>
+        <div class="glossary-item"><div class="g-term">Lossless</div><div class="g-def">Full data recovery on decompression.</div></div>
+        <div class="glossary-item"><div class="g-term">Lossy</div><div class="g-def">Some data lost; smaller file.</div></div>
+        <div class="glossary-item"><div class="g-term">RLE</div><div class="g-def">Stores (value, count) for repeated values.</div></div>
+        <div class="glossary-item"><div class="g-term">Binary prefix</div><div class="g-def">Powers of 2: KiB (1024), MiB, GiB.</div></div>
+        <div class="glossary-item"><div class="g-term">Decimal prefix</div><div class="g-def">Powers of 10: KB (1000), MB, GB.</div></div>
+      </div>
+    </div>
+
+    <footer>CS 9618 · Unit 1: Information Representation · Syllabus 2026 · Sources: Cambridge 9618 spec, Hodder textbook, past papers &amp; mark schemes (2021–2026)</footer>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
